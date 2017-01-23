@@ -1,0 +1,30 @@
+<div ng-form="$ctrl.packagingForm">
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="$ctrl.packagingAccState">
+      <uib-accordion-heading>
+        Packaging <i class="pull-right glyphicon"
+                     ng-class="{'glyphicon-chevron-down': $ctrl.packagingAccState, 'glyphicon-chevron-right': !$ctrl.packagingAccState}"></i>
+      </uib-accordion-heading>
+      <div ng-class="{true: 'has-error'}[$ctrl.packagingForm.$invalid]">
+        <div class="input-row search-wrapper">
+          <label>Which line of business would you like to add next?</label>
+          <select class="select-menu" id="lineOfBusiness" name="lineOfBusiness"
+                  ng-model="$ctrl.lob"
+                  ng-options="a.LineOfBusiness as a.Text for a in $ctrl.policy.PackageOptions"
+                  autocomplete="off">
+            <option value="">Select One</option>
+          </select>
+        </div>
+        <div ng-messages="$ctrl.packagingForm.lineOfBusiness.$error" style="color:maroon">
+          <div ng-message="required">Please select a line of business.</div>
+        </div>
+      </div>
+      <div class="submit-wrapper">
+        <button class="btn btn-turq queued-click"
+                ng-click="$ctrl.addLob($ctrl.lob, $ctrl.packagingForm)">
+          Add
+        </button>
+      </div>
+    </div>
+  </uib-accordion>
+</div>

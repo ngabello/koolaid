@@ -1,0 +1,7 @@
+<div class="row notices-row" ng-if="$ctrl.validMessages">
+    <div ng-repeat="(index, message) in $ctrl.validMessages">
+        <div class="span7 notice">
+            <i class="glyphicon glyphicon-info-sign" /> {{message.Text}}
+        </div>
+    </div>
+</div>

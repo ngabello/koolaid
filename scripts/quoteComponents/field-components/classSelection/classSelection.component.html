@@ -1,0 +1,46 @@
+ <div ng-form="classSearchForm">
+            <div>
+              <uib-accordion close-others="oneAtATime">
+                <div uib-accordion-group class="panel-default" is-open="$ctrl.addClassState">
+                  <uib-accordion-heading>
+                    Add another class <i class="pull-right glyphicon"
+                                        ng-class="{'glyphicon-chevron-down': $ctrl.addClassState, 'glyphicon-chevron-right': !$ctrl.addClassState}"></i>
+                  </uib-accordion-heading>
+                  <div class="input-row search-wrapper" ng-if="$ctrl.isDropDown()">
+                    <div ng-messages="classSearchForm.classCodeSearch.$error" style="color:maroon">
+                      <div ng-message="required">Please select a class code item.</div>
+                    </div>
+                    <select class="select-menu" id="classCodeSearch" name="classCodeSearch"
+                      ng-model="$ctrl.classSrchResult"
+                      ng-options="a as a.Description for a in $ctrl.classResults"
+                      autocomplete="off" required>
+                        <option value="">Select a class</option>
+                    </select>
+                  </div>
+                  <div class="input-row search-wrapper" ng-if="!$ctrl.isDropDown()">
+                      <div ng-messages="classSearchForm.classCodeSearch.$error" style="color:maroon">
+                        <div ng-message="required">Please select a class code item.</div>
+                      </div>
+                      <input type="text" id="classCodeSearch" name="classCodeSearch"
+                            ng-model="$ctrl.classSrchResult"
+                            placeholder="Enter class code or keyword"
+                            uib-typeahead="srchItem as (srchItem.Code + ' - ' + srchItem.Description) for srchItem in $ctrl.getClassCodes($viewValue)"
+                            typeahead-loading="loadingLocations"
+                            typeahead-min-length="3"
+                            typeahead-no-results="noResults" class="form-control"
+                            autocomplete="off">
+                      <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh">Well....... I'm waiting!</i>
+                      <div ng-show="noResults">
+                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                      </div>
+                </div>
+                  <div class="submit-wrapper">
+                    <button class="btn btn-turq queued-click"
+                            ng-click="$ctrl.addClass($ctrl.classSrchResult, classSearchForm)">
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </uib-accordion>
+            </div>
+          </div>  

@@ -1,0 +1,33 @@
+<form name="imCoverageVM.imCoverageSelectionForm" novalidate>
+  <button-bar next="coverageVM.continue(form)" save="coverageVM.savePolicy(form)" back="coverageVM.navigateBack(form)"></button-bar>
+  <lob-selection-bar selected-lob="coverageVM.lob" policy="coverageVM.policy"></lob-selection-bar>
+  <div>
+    <div>
+      <uib-accordion close-others="oneAtATime">
+        <!-- Inland Marine Accordian -->
+        <div uib-accordion-group class="panel-default" is-open="imCoverageVM.imClassAccordionState">
+          <uib-accordion-heading>
+            InlandMarine Classes <i class="pull-right glyphicon"
+                                ng-class="{'glyphicon-chevron-down': imCoverageVM.imClassAccordionState, 'glyphicon-chevron-right': !imCoverageVM.imClassAccordionState}"></i>
+          </uib-accordion-heading>
+          <div>
+            <h1>Allo</h1>
+          </div>
+        </div>
+        <div uib-accordion-group class="panel-default" is-open="imCoverageVM.endorsementsAccordionState">
+          <uib-accordion-heading>
+            Add Forms & Endoresments <i class="pull-right glyphicon"
+                                        ng-class="{'glyphicon-chevron-down': imCoverageVM.endorsementsAccordionState, 'glyphicon-chevron-right': !imCoverageVM.endorsementsAccordionState}"></i>
+          </uib-accordion-heading>
+          <div>
+            <h1>Allo</h1>
+          </div>
+        </div>
+      </uib-accordion>
+    </div>
+  </div>
+  <!-- Package Options -->
+  <div ng-if="imCoverageVM.policy.PackageOptions && imCoverageVM.policy.PackageOptions.length > 0">
+    <coverage-packaging policy="imCoverageVM.policy"></coverage-packaging>
+  </div>
+</form>

@@ -1,0 +1,77 @@
+<!--<div>-->
+<!--<progress-menu></progress-menu>-->
+<!--</div>-->
+<dashboard-menu></dashboard-menu>
+<spinner class="loading-msg" name="removeSpinner">
+  <div ng-init="loadingMsg = 'Removing'" ng-include="'../views/platform/loadingTemplate.html'"></div>
+</spinner>
+<spinner class="loading-msg" name="addingSpinner">
+  <div ng-init="loadingMsg = 'Adding'" ng-include="'../views/platform/loadingTemplate.html'"></div>
+</spinner>
+<form name="coverageSelectionForm" novalidate>
+  <div class="sub-section button-bar">
+    <div class="input-row">
+      <div class="left-buttons">
+        <button class="btn btn-lightGrey queued-click cancel" ng-click="csVM.goBack()">Back
+        </button>
+      </div>
+      <div class="right-buttons">
+        <button class="btn btn-turq queued-click " ng-click="csVM.saveQuote(coverageSelectionForm)">Save
+        </button>
+        <button class="btn btn-turq queued-click btn-refer hide">Refer
+        </button>
+        <button class="btn btn-turq queued-click btn-continue " ng-click="csVM.continue(coverageSelectionForm)">
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+  <!----- repeat ------------------->
+  <uib-tabset active="csVM.activeTabIndex">
+    <uib-tab index="tab.index" ng-repeat="tab in csVM.availableTabs" ng-click="csVM.tabSelected(tab.lob)">
+      <uib-tab-heading>
+        <div class="pull-left">{{tab.lob.Desc}}</div>
+        <div class="pull-right">
+          <i ng-click='csVM.removeTab($event, tab.lob.Id)'><span
+            class='glyphicon glyphicon-remove'></span></i>
+        </div>
+      </uib-tab-heading>
+      <div ng-include="tab.templateUrl"></div>
+    </uib-tab>
+    <uib-tab index="7" heading="+" ng-if="csVM.packageOptions.length > 0">
+      <div class="input-row">
+        <div class="input-column span4">
+          <label for="PackageLineOfBusiness">Which line of business would you like to add next?</label>
+          <select class="select-menu" id="packageLineOfBusiness" name="packageLineOfBusiness"
+                  ng-model="csVM.selectedPackage"
+                  ng-options="a.LineOfBusiness as a.Text for a in csVM.packageOptions"
+                  autocomplete="off">
+            <option value="">Select One</option>
+          </select>
+        </div>
+        <div class="input-column span4">
+          <label>&nbsp;</label>
+          <button class="btn btn-turq" ng-click="csVM.addLineOfBusiness(csVM.selectedPackage)" id="add-lob">Add</button>
+        </div>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+  <div class="sub-section button-bar">
+    <div class="input-row">
+      <div class="left-buttons">
+        <button class="btn btn-lightGrey queued-click cancel" ng-click="csVM.goBack()">Back
+        </button>
+      </div>
+      <div class="right-buttons">
+        <button class="btn btn-turq queued-click " ng-click="csVM.saveQuote(coverageSelectionForm)">Save
+        </button>
+        <button class="btn btn-turq queued-click btn-refer hide">Refer
+        </button>
+        <button class="btn btn-turq queued-click btn-continue " ng-click="csVM.continue(coverageSelectionForm)">
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+

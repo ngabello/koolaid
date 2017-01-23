@@ -1,0 +1,167 @@
+<div id="dashboard-innerwrapper" class="dashboard">
+  <div class="transaction-header">
+    <span class="transaction-label">Transaction Number:</span>
+    <span ng-bind="dashboardVM.dashboardData.SubmissionId"></span>
+  </div>
+  <div class="policy-header" ng-if="dashboardVM.showPolicyNumber()">
+    <span class="policy-label">Policy Number:</span>
+    <span ng-bind="dashboardVM.dashboardData.PolicyNumber"></span>
+  </div>
+  <div id="dashboardAuthReasons" class="sub-section authority  collapsible">
+    <div class="dial-wrapper">
+      <div class="outer-circle" data-toggle="collapse">
+        <div class="inner-circle">
+          <i class="authority-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="authority-wrapper">
+      <div class="authority-text" data-toggle="collapse">
+        Quote Authority:
+        <span class="authority-type">Agent</span>
+      </div>
+      <div class="title-right">
+        <div uib-dropdown="dropdown" class="dropdown-holder">
+          <button class="btn btn-icon" uib-dropdown-toggle><span class="glyphicon glyphicon-cog"
+                                                                 ng-class="{active: item.bookmark}"></span>
+          </button>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+            <li role="menuitem"><a ng-click="dashboardVM.newTransaction()">Start a new transaction</a></li>
+            <li role="menuitem"><a ng-click="dashboardVM.deleteTransaction()">Delete this transaction</a></li>
+            <li role="menuitem"><a ng-click="dashboardVM.copy('SimilarRisk')">Copy for similar risk</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="total-premium-wrapper">
+      Total Premium: <span
+      class="featured-value-amount">{{::dashboardVM.dashboardData.TotalPremium | currency: 2}}</span>
+    </div>
+  </div>
+  <!-- Notes ------------------------------------------>
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <div uib-accordion-group class="panel-default" is-open="dashboardVM.notesAcc">
+        <uib-accordion-heading>
+          Notes <i class="pull-right glyphicon"
+                   ng-class="{'glyphicon-chevron-down': dashboardVM.notesAcc, 'glyphicon-chevron-right': !dashboardVM.notesAcc}"></i>
+        </uib-accordion-heading>
+        <div>
+          <div class="note-innerwrapper" ng-repeat="(noteIndex, internalNote) in dashboardVM.dashboardData.InternalNotesList">
+            <div class="detail-row bg-GrayLight">
+              <div class="detailsNotes">
+                <div class="overflow-hide">
+                  <span class="float-left">{{::internalNote.DisplayName}}</span>
+                  <span class="float-right" id="createdDate">{{::internalNote.CreatedDate | date: 'MM/dd/yyyy'}}</span>
+                </div>
+                <div>
+                  <div class="w75 float-left">
+                    <i class="glyphicon glyphicon-play float-left margin-right"></i>
+                    {{::internalNote.NoteText}}
+                  </div>
+                  <span class="float-right" id="createdTime">{{::internalNote.CreatedDate | date: 'h:mm:ss a'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <textarea ui-tinymce="dashboardVM.tinymceOptions" ng-model="dashboardVM.tinymceModel"></textarea>
+          </div>
+          <div>
+            <label>Public:
+              <input type="checkbox" ng-model="dashboardVM.isPublic">
+            </label>
+          </div>
+          <div class="submit-wrapper">
+            <button class="btn btn-turq queued-click"
+                    ng-click="dashboardVM.clearNote()">
+              Clear Note
+            </button>
+            <button class="btn btn-turq queued-click"
+                    ng-click="dashboardVM.saveNote()">
+              Save Note
+            </button>
+          </div>
+          <div ng-if="dashBoardVM.dashboardData.ProducerEmail">
+            <a ng-href="{{mailLink}}" class="link-text email-link new-email-link" target="_blank">
+              <i class="glyphicon glyphicon-envelope"></i>Email producer for more information</a>
+          </div>
+        </div>
+      </div>
+    </uib-accordion>
+  </div>
+  <!-- Attachments ----------------------------------->
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <div uib-accordion-group class="panel-default" is-open="dashboardVM.attachmentsAcc">
+        <uib-accordion-heading>
+          Attachments <i class="pull-right glyphicon"
+                   ng-class="{'glyphicon-chevron-down': dashboardVM.attachmentsAcc, 'glyphicon-chevron-right': !dashboardVM.attachmentsAcc}"></i>
+        </uib-accordion-heading>
+        <div class="sub-panel">
+          <p>
+            <a id="attachmentsModal" class="link-text" ng-click="dashboardVM.viewAttachments()">
+              View/Add attachments
+            </a>
+          </p>
+        </div>
+      </div>
+    </uib-accordion>
+  </div>
+  <!-- Account Information --------------------------->
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <div uib-accordion-group class="panel-default" is-open="dashboardVM.accountAcc">
+        <uib-accordion-heading>
+          Account Information <i class="pull-right glyphicon"
+                         ng-class="{'glyphicon-chevron-down': dashboardVM.accountAcc, 'glyphicon-chevron-right': !dashboardVM.accountAcc}"></i>
+        </uib-accordion-heading>
+        <div style="display: block;">
+          <div class="detail-row">
+            <div class="icon"><i class="glyphicon glyphicon-calendar"></i></div>
+            <div class="details">
+              <div class="detail-title">Term</div>
+              <div class="detail-sub-title"><span id="dashboard-effective-date">{{::dashboardVM.dashboardData.PolicyEffectiveDate | date: 'MM/dd/yyyy'}}</span> - <span id="dashboard-expiration-date">{{::dashboardVM.dashboardData.PolicyExpirationDate | date: 'MM/dd/yyyy'}}</span></div>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="icon"><i class="glyphicon glyphicon-time"></i></div>
+            <div class="details">
+              <div class="detail-title">Rates and Forms As Of</div>
+              <div class="detail-sub-title"><span id="dashboard-data-pull-effective-date">1/16/2017</span></div>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="icon"><i class="glyphicon glyphicon-user"></i></div>
+            <div class="details">
+              <div class="detail-title">Contact</div>
+              <div class="detail-sub-title"><span id="dashboard-contact" ng-bind="dashboardVM.dashboardData.Contact"></span></div>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="icon"><i class="glyphicon glyphicon-file"></i></div>
+            <div class="details">
+              <div class="detail-title">Account Name</div>
+              <div class="detail-sub-title"><span id="dashboard-account-name" ng-bind="dashboardVM.dashboardData.AccountName"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-accordion>
+  </div>
+  <!-- Contractors Pollution Liability --------------------------->
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <div uib-accordion-group class="panel-default" is-open="dashboardVM.cplAcc">
+        <uib-accordion-heading>
+          Contractors Pollution Liability <i class="pull-right glyphicon"
+                                 ng-class="{'glyphicon-chevron-down': dashboardVM.cplAcc, 'glyphicon-chevron-right': !dashboardVM.cplAcc}"></i>
+        </uib-accordion-heading>
+        <div>
+          I got nuthin
+        </div>
+      </div>
+    </uib-accordion>
+  </div>
+</div>
+

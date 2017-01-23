@@ -1,0 +1,33 @@
+<form name="cfCoverageVM.cfCoverageSelectionForm" novalidate>
+  <button-bar next="coverageVM.continue(form)" save="coverageVM.savePolicy(form)" back="coverageVM.navigateBack(form)"></button-bar>
+  <lob-selection-bar selected-lob="coverageVM.lob" policy="coverageVM.policy"></lob-selection-bar>
+  <div>
+    <div>
+      <uib-accordion close-others="oneAtATime">
+        <!-- General Liability Accordian -->
+        <div uib-accordion-group class="panel-default" is-open="propertyVM.propertyClassAccordionState">
+          <uib-accordion-heading>
+            Property Classes <i class="pull-right glyphicon"
+                                ng-class="{'glyphicon-chevron-down': cfCoverageVM.propertyClassAccordionState, 'glyphicon-chevron-right': !cfCoverageVM.propertyClassAccordionState}"></i>
+          </uib-accordion-heading>
+          <div>
+            <h1>Allo</h1>
+          </div>
+        </div>
+        <div uib-accordion-group class="panel-default" is-open="propertyVM.endorsementsAccordionState">
+          <uib-accordion-heading>
+            Add Forms & Endoresments <i class="pull-right glyphicon"
+                                        ng-class="{'glyphicon-chevron-down': cfCoverageVM.endorsementsAccordionState, 'glyphicon-chevron-right': !cfCoverageVM.endorsementsAccordionState}"></i>
+          </uib-accordion-heading>
+          <div>
+            <h1>Allo</h1>
+          </div>
+        </div>
+      </uib-accordion>
+    </div>
+  </div>
+  <!-- Package Options -->
+  <div ng-if="cfCoverageVM.policy.PackageOptions && cfCoverageVM.policy.PackageOptions.length > 0">
+    <coverage-packaging policy="cfCoverageVM.policy"></coverage-packaging>
+  </div>
+</form>

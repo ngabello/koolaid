@@ -1,0 +1,86 @@
+<div class="sub-section">
+  <div class="title">
+    <h4>Transaction Log</h4>
+  </div>
+  <div class="row">
+    <div class="class-info">
+      Only activity created within our new Quick Quote system is available here.
+    </div>
+  </div>
+  <div class="transaction-search">
+    <h5 class="sub-section-heading">Search Transactions</h5>
+    <div class="input-row">
+      <div class="span2 input-column">
+        <label>Find</label>
+        <select class="form-control form-right" id="SearchType" name="SearchType"
+                ng-model="$ctrl.searchCriteria.SearchType"
+                ng-change="$ctrl.searchTypeChanged($ctrl.searchCriteria.SearchType)"
+                ng-options="a.value as a.desc for a in $ctrl.searchTypeList" required>
+        </select>
+      </div>
+      <div ng-if="$ctrl.showDateRange">
+        <div class="input-append date date-picker">
+          <date-picker ng-model="$ctrl.searchCriteria.SearchFrom" date-format="'MM/dd/yyyy'" is-required="true"
+                       label-name="'From'"></date-picker>
+        </div>
+        <div class="input-append date date-picker">
+          <date-picker ng-model="$ctrl.searchCriteria.SearchTo" date-format="'MM/dd/yyyy'" is-required="true"
+                       label-name="'To'"></date-picker>
+        </div>
+      </div>
+      <div ng-if="$ctrl.showIs || $ctrl.showContains" class="span2 input-column">
+        <label ng-if="$ctrl.showContains">Contains</label>
+        <label ng-if="$ctrl.showIs">Is</label>
+        <input class="form-control form-md form-right" id="SearchValue" name="SearchValue"
+               type="text" ng-model="$ctrl.searchCriteria.SearchValue">
+      </div>
+      <div ng-if="$ctrl.showStatuses" class="span2 input-column">
+        <label>Is</label>
+        <select class="form-control form-right" id="LimitScope" name="LimitScope"
+                ng-model="$ctrl.searchCriteria.SearchStatus"
+                ng-init="$ctrl.searchCriteria.SearchStatus = $ctrl.searchCriteria.SearchStatus || $ctrl.markelStatuses[0].value"
+                ng-options="a.value as a.desc for a in $ctrl.markelStatuses">
+        </select>
+      </div>
+      <div ng-if="$ctrl.showLimitScope" class="span2 input-column">
+        <label>Limit scope to</label>
+        <select class="form-control form-right" id="LimitScope" name="LimitScope"
+                ng-model="$ctrl.searchCriteria.LimitScope"
+                ng-init="$ctrl.searchCriteria.LimitScope = $ctrl.searchCriteria.LimitScope || $ctrl.markelSearchRegions[0].value"
+                ng-options="a.value as a.desc for a in $ctrl.markelSearchRegions">
+        </select>
+      </div>
+      <div ng-if="$ctrl.showLimitTime" class="span2 input-column">
+        <label>Limit time to</label>
+        <select class="form-control form-right" id="LimitSearchFrom" name="LimitSearchFrom"
+                ng-model="$ctrl.searchCriteria.LimitSearchFrom"
+                ng-init="$ctrl.searchCriteria.LimitSearchFrom = $ctrl.searchCriteria.LimitSearchFrom || $ctrl.limitSearchFromTypes[0].value"
+                ng-options="a.value as a.desc for a in $ctrl.limitSearchFromTypes">
+        </select>
+      </div>
+      <div>
+      </div>
+      <div class="span2 input-column">
+        <button id="btnContinue" class="btn btn-turq" ng-click="$ctrl.searchTransactions()" id="transactionSearch">
+          Search
+        </button>
+      </div>
+    </div>
+    <div>
+      <div ng-if="$ctrl.localScope.gridOptions.totalItems > 0">
+        <div>
+          <div ui-grid="$ctrl.localScope.gridOptions" ui-grid-pagination></div>
+        </div>
+        <div>
+          <ul uib-pagination total-items="$ctrl.localScope.gridOptions.totalItems"
+              ng-model="$ctrl.localScope.gridOptions.paginationCurrentPage" max-size="$ctrl.paginationOptions.pageSize"
+              class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+        </div>
+      </div>
+    </div>
+    <div ng-if="$ctrl.localScope.gridOptions.totalItems == 0">
+      No Results Returned
+    </div>
+  </div>
+</div>
+

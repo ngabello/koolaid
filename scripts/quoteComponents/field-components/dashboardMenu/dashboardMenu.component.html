@@ -1,0 +1,74 @@
+<div>
+  <div>
+    <div class="transaction-header">
+      <span class="transaction-label">Transaction Number:</span>
+      <span class="transaction-id"></span>
+    </div>
+    <div class="section">
+      <div id="dashboardAuthReasons" class="sub-section authority  collapsible">
+        <div class="dial-wrapper">
+          <div class="outer-circle" data-toggle="collapse">
+            <div class="inner-circle">
+              <i class="authority-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="authority-wrapper">
+          <div class="authority-text" data-toggle="collapse">
+            Quote Authority:
+            <span class="authority-type">Agent</span>
+          </div>
+          <div class="title-right">
+            <div uib-dropdown="dropdown" class="dropdown-holder">
+              <button class="btn btn-icon" uib-dropdown-toggle><span class="glyphicon glyphicon-cog"></span></button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a ng-click="dashBoardVM.startTransaction()">Start a new transaction</a></li>
+                <li role="menuitem"><a ng-click="dashBoardVM.deleteTransaction()">Delete this transaction</a></li>
+                <li role="menuitem"><a ng-click="dashBoardVM.copyTransaction()">Copy for similar risk</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="total-premium-wrapper">
+          Total Premium: <span class="featured-value-amount">$0</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="dashboardAccountInfo">
+
+      </div>
+      <div id="dashboardGL" class="sub-section collapsible">
+      </div>
+    </div>
+
+  </div>
+  <div class="sub-section">
+    <!-- Notes -->
+    <div>
+      <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" is-open="dashBoardVM.notesAccordion">
+          <uib-accordion-heading>
+            Notes <i class="pull-right glyphicon"
+                     ng-class="{'glyphicon-chevron-down': dashBoardVM.notesAccordion, 'glyphicon-chevron-right': !dashBoardVM.notesAccordion}"></i>
+          </uib-accordion-heading>
+          <div>
+          <textarea ui-tinymce="dashBoardVM.tinymceOptions" ng-model="dashBoardVM.tinymceModel"></textarea>
+          </div>
+          <div class="right-buttons">
+            <button class="btn btn-turq queued-click " ng-click="dashBoardVM.saveNote(dashBoardVM.tinymceModel)">Save
+            </button>
+          </div>
+          <div class="input-row">
+            <a href="mailto:jrigsby@210432_sgainms.com?subject=Transaction Number: 1511583/Account Name: "
+               class="link-text email-link new-email-link"><i class="glyphicon glyphicon-envelope"></i>Email producer
+              for more information</a>
+          </div>
+        </div>
+      </uib-accordion>
+    </div>
+
+  </div>
+
+
+</div>

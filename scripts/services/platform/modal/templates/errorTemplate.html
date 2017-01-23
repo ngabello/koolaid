@@ -1,0 +1,16 @@
+<div id="modal-template">
+  <div class="message-modal-header">
+    <i class="fa fa-times" style="float: right;font-size: 1.5em;cursor:pointer;" ng-click="continue()"></i>
+    <h4 class="modal-title">Error</h4>
+  </div>
+  <div class=modal-body>
+    <div class="error-icon"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+    <div class="error-text">
+      <p class="message">Something went wrong and we cannot finish your quote. We've logged the error.</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="continue()">Ok</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+  </div>
+</div>

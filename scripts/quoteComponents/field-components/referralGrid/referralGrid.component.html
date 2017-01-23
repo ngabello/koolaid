@@ -1,0 +1,17 @@
+<uib-accordion close-others="oneAtATime">
+  <div uib-accordion-group class="panel-default" is-open="status.open">
+    <uib-accordion-heading>
+      Outstanding Referrals <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+    </uib-accordion-heading>
+    <div ng-if="$ctrl.localScope.gridOptions.totalItems == 0">No Results Found</div>
+    <div ng-if="$ctrl.localScope.gridOptions.totalItems > 0">
+      <div ui-grid="$ctrl.localScope.gridOptions" ui-grid-pagination style="width: 800px; height: 250px"></div>
+      <div>
+        <ul uib-pagination total-items="$ctrl.localScope.gridOptions.totalItems"
+            ng-model="$ctrl.localScope.gridOptions.paginationCurrentPage" max-size="$ctrl.paginationOptions.pageSize"
+            class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+      </div>
+    </div>
+  </div>
+</uib-accordion>

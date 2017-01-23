@@ -1,0 +1,33 @@
+<form name="xsCoverageVM.xsCoverageSelectionForm" novalidate>
+  <button-bar next="coverageVM.continue(form)" save="coverageVM.savePolicy(form)" back="coverageVM.navigateBack(form)"></button-bar>
+  <lob-selection-bar selected-lob="coverageVM.lob" policy="coverageVM.policy"></lob-selection-bar>
+  <div>
+    <div>
+      <uib-accordion close-others="oneAtATime">
+        <!-- Inland Marine Accordian -->
+        <div uib-accordion-group class="panel-default" is-open="xsCoverageVM.xsClassAccordionState">
+          <uib-accordion-heading>
+            Excess Liability Classes <i class="pull-right glyphicon"
+                                ng-class="{'glyphicon-chevron-down': xsCoverageVM.xsClassAccordionState, 'glyphicon-chevron-right': !xsCoverageVM.xsClassAccordionState}"></i>
+          </uib-accordion-heading>
+          <div>
+            <h1>Allo</h1>
+          </div>
+        </div>
+        <div uib-accordion-group class="panel-default" is-open="xsCoverageVM.endorsementsAccordionState">
+          <uib-accordion-heading>
+            Add Forms & Endoresments <i class="pull-right glyphicon"
+                                        ng-class="{'glyphicon-chevron-down': xsCoverageVM.endorsementsAccordionState, 'glyphicon-chevron-right': !xsCoverageVM.endorsementsAccordionState}"></i>
+          </uib-accordion-heading>
+          <div>
+            <h1>Allo</h1>
+          </div>
+        </div>
+      </uib-accordion>
+    </div>
+  </div>
+  <!-- Package Options -->
+  <div ng-if="xsCoverageVM.policy.PackageOptions && xsCoverageVM.policy.PackageOptions.length > 0">
+    <coverage-packaging policy="xsCoverageVM.policy"></coverage-packaging>
+  </div>
+</form>

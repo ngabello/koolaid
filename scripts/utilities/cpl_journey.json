@@ -1,0 +1,127 @@
+{
+  "ClassSearch": {
+    "template": "root",
+    "url": "/classSearch",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/classSearch/cpl_classSearch.component.html",
+    "controller": "CPLClassSearchComponentCtrl()",
+    "controllerAs": "classSearchVM",
+    "data": {
+      "pageName": "ClassSearch",
+      "nextPage": "AccountInformation",
+      "backPage": ""
+    }
+  },
+  "AccountInformation": {
+    "template": "root.quickQuote",
+    "url": "/account-information/:transactionId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/accountInformation/cpl_accountInfo.component.html",
+    "controller": "CPLAccountInformationComponentCtrl()",
+    "controllerAs": "accountInfoVM",
+    "params": {
+      "lobId": null
+    },
+    "data": {
+      "pageName": "AccountInformation",
+      "nextPage": "CoverageSelection",
+      "backPage": "ClassSearch"
+    }
+  },
+  "CoverageSelection": {
+    "template": "root.quickQuote",
+    "url": "/cpl-coverage-selection/:transactionId/:lobId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/coverageSelection/cpl_coverageSelection.component.html",
+    "controller": "CPLCoverageSelectionComponentCtrl()",
+    "controllerAs": "coverageVM",
+    "data": {
+      "lobId": "CPL",
+      "pageName": "CoverageSelection",
+      "nextPage": "RatesPremiums",
+      "backPage": "AccountInformation"
+    }
+  },
+  "RatesPremiums": {
+    "template": "root.quickQuote",
+    "url": "/cpl-rates-premiums/:transactionId/:lobId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/ratesPremiums/cpl_RatesPremium.component.html",
+    "controller": "CPLRatesPremiumComponentCtrl()",
+    "controllerAs": "ratePremiumVM",
+    "data": {
+      "lobId": "CPL",
+      "pageName": "RatesPremiums",
+      "nextPage": "AdditionalQuoteInformation",
+      "backPage": "CoverageSelection"
+    }
+  },
+  "AdditionalQuoteInformation": {
+    "template": "root.quickQuote",
+    "url": "/additional-quote-information/:transactionId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/additionalInformation/cpl_additionalInfo.component.html",
+    "controller": "CPLAdditionalInformationComponentCtrl()",
+    "controllerAs": "additionalInfoVM",
+    "data": {
+      "pageName": "AdditionalQuoteInformation",
+      "nextPage": "ReviewQuote",
+      "backPage": "RatesPremiums"
+    }
+  },
+  "ReviewQuote": {
+    "template": "root.quickQuote",
+    "url": "/review-quote/:transactionId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/reviewQuote/cpl_reviewQuote.component.html",
+    "controller": "CPLReviewQuoteComponentCtrl()",
+    "controllerAs": "reviewQuoteVM",
+    "data": {
+      "pageName": "ReviewQuote",
+      "nextPage": "AdditionalBindInformation",
+      "backPage": "AdditionalQuoteInformation"
+    }
+  },
+  "AdditionalBindInformation": {
+    "template": "root.quickQuote",
+    "url": "/additional-bind-information/:transactionId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/additionalInformation/cpl_additionalInfo.component.html",
+    "controller": "CPLAdditionalInformationComponentCtrl()",
+    "controllerAs": "additionalInfoVM",
+    "data": {
+      "pageName": "AdditionalBindInformation",
+      "nextPage": "ReviewBind",
+      "backPage": "ReviewQuote"
+    }
+  },
+  "ReviewBind": {
+    "template": "root.quickQuote",
+    "url": "/review-bind/:transactionId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/reviewBind/cpl_reviewBind.component.html",
+    "controller": "CPLReviewBindComponentCtrl()",
+    "controllerAs": "reviewBindVM",
+    "data": {
+      "pageName": "ReviewBind",
+      "nextPage": "ReviewIssue",
+      "backPage": "AdditionalBindInformation"
+    }
+  },
+  "ReviewIssue": {
+    "template": "root.quickQuote",
+    "url": "/review-issue/:transactionId",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/reviewIssue/cpl_reviewIssue.component.html",
+    "controller": "CPLReviewIssueComponentCtrl()",
+    "controllerAs": "reviewBindVM",
+    "data": {
+      "pageName": "ReviewIssue",
+      "nextPage": null,
+      "backPage": "ReviewBind"
+    }
+  },
+  "ClassGuide": {
+    "template": "root.quickQuote",
+    "url": "/class-guide/:classCode",
+    "templateUrl": "../scripts/quoteComponents/pages/cpl/classGuide/cpl_classGuide.component.html",
+    "controller": "CPLClassGuideComponentCtrl()",
+    "controllerAs": "classGuideVM",
+    "data": {
+      "pageName": "ClassGuide",
+      "nextPage": null,
+      "backPage": "ClassSearch"
+    }
+  }
+}

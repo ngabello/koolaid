@@ -1,0 +1,21 @@
+<form name="lobSelectionVM.lobSelectionForm" novalidate>
+  <lob-selection-bar lob-order="lobSelectionVM.lobOrder"
+                     package-options="lobSelectionVM.packageOptions"></lob-selection-bar>
+  <div class="input-row">
+    <div class="input-column span4">
+      <label for="PackageLineOfBusiness">Which line of business would you like to add next?</label>
+      <select class="select-menu" id="packageLineOfBusiness" name="packageLineOfBusiness"
+              ng-model="lobSelectionVM.selectedPackage"
+              ng-options="a.LineOfBusiness as a.Text for a in lobSelectionVM.packageOptions"
+              autocomplete="off">
+        <option value="">Select One</option>
+      </select>
+    </div>
+    <div class="input-column span4">
+      <label>&nbsp;</label>
+      <button class="btn btn-turq" ng-click="lobSelectionVM.addLineOfBusiness(lobSelectionVM.selectedPackage)"
+              id="add-lob">Add
+      </button>
+    </div>
+  </div>
+</form>

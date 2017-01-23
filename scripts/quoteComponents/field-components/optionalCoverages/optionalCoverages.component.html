@@ -1,0 +1,82 @@
+<div uib-accordion-group class="panel-default" is-open="$ctrl.coveragesState">
+    <uib-accordion-heading>
+        Additional Coverages <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.coveragesState, 'glyphicon-chevron-right': !$ctrl.coveragesState}"></i>
+    </uib-accordion-heading>
+    <div>
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" ng-repeat="(covGroupIndex, coverageGroupItem) in $ctrl.coverageGroups" is-open="coverageGroupItem.isOpen">
+                <uib-accordion-heading>
+                    <div>
+                        {{::coverageGroupItem.Name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': coverageGroupItem.isOpen, 'glyphicon-chevron-right': !coverageGroupItem.isOpen}"></i>
+                    </div>
+                </uib-accordion-heading>
+                <div>
+                    <table class="plain">
+                        <thead>
+                            <tr class="label-row">
+                                <th class="add">Add</th>
+                                <th>Description</th>
+                                <th class="basis">Rating Basis</th>
+                                <th class="count">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat-start="(covIndex, coverage) in ::coverageGroupItem.Coverages" class="optional-coverage-row" ng-class="{'condition': $ctrl.isInternalUser && (coverage.IsNonAssociated || coverage.IsRemoved)}" style="border-width: 1px 0 0 0;">
+                                <td class="add">
+                                    <div ng-if="coverageGroupItem.Display == 'CheckBox'">
+                                        <input type="checkbox" id="{{coverage.Name + '_chkBx_' + covIndex}}" ng-model="coverage.IsSelected" ng-change="$ctrl.valueChanged('OptionalCoverages',coverage.IsSelected, {'Code': coverage.Code, 'SingleType': coverage.Display == 'RadioButton'})">
+                                    </div>
+                                    <div ng-if="coverageGroupItem.Display == 'RadioButton'">
+                                        <input type="radio" name="{{coverageGroupItem.Code + '_rdoBtn_' + covGroupIndex}}" id="{{coverageGroupItem.Code + '_rdoBtn_' + covGroupIndex}}" ng-model="coverage.IsSelected" ng-value="true" ng-change="$ctrl.valueChanged('OptionalCoverages',coverage.IsSelected, {'Code': coverage.Code, 'SingleType': coverage.Display == 'RadioButton'})">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="bold">
+                                        {{::coverage.Name}}
+                                    </p>
+                                    <a href="/forms/download/CG 04 351207" ng-repeat="(docIndex, document) in ::coverage.AddDocuments">{{::document.DisplayNumber}}
+                  {{::document.EditionDate|date:'MM yy'}}</a>
+                                </td>
+                                <td class="basis">
+                                    <div ng-if="coverage.LimitOptions && coverage.LimitOptions.length > 0">
+                                        <div ng-if="coverage.LimitOptions.length == 1" ng-bind-html="$ctrl.optionalLimitOptions(coverage.LimitOptions[0]) | trust"></div>
+                                        <div ng-if="coverage.LimitOptions.length > 1">
+                                            <select ng-model="coverage.LimitLevelId" ng-options="a.Id as $ctrl.optionalLimitOptions(a) for a in coverage.LimitOptions" autocomplete="off" ng-change="$ctrl.valueChanged('OptionalCoverageLimit',coverage.LimitLevelId, {'Code': coverage.Code})">
+                    </select>
+                                        </div>
+                                    </div>
+                                    <div ng-bind-html="$ctrl.optionalCoverageRateBasis(coverage) | trust"></div>
+                                </td>
+                                <td class="count">
+                                    <input class="optionalCoverageQuantityRequired optional-coverage-quantity" name="{{coverageGroupItem.Code + '_Quantity_' + covGroupIndex}}" id="{{coverageGroupItem.Code + '_Quantity_' + covGroupIndex}}" type="text" ng-if="$ctrl.isUnitBasisType(coverage.Basis) == true"
+                                        ng-model="coverage.Quantity" ng-blur="$ctrl.valueChanged('OptionalCoverageQuantity',coverage.Quantity, {'Code': coverage.Code})">
+
+                                    <input class="optionalCoverageQuantityRequired optional-coverage-quantity" type="text" ng-if="$ctrl.isUnitBasisType(coverage.Basis) == false" value="N/A" disabled="disabled">
+                                </td>
+                            </tr>
+                            <tr class="messaging-row optional-coverage-message-row" ng-class="{'condition': $ctrl.isInternalUser && (coverage.IsNonAssociated || coverage.IsRemoved)}">
+                                <td colspan="4" class="colspan">
+                                    <display-messages messages="coverage.Messages" field-name="coverage.Code"></display-messages>
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat-end class="condition message-block-warning" ng-if="$ctrl.isInternalUser && (coverage.IsNonAssociated || coverage.IsRemoved)">
+                                <td class="add" colspan="1">&nbsp;</td>
+                                <td colspan="3" class="">
+                                    <div class="warining-message">
+                                        <div class="fa fa-warning"></div>
+                                        <div>
+                                            <span>
+                                                        Adding this coverage is not recommended according to current underwriting rules.
+                                                    </span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </uib-accordion>
+    </div>
+</div>

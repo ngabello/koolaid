@@ -1,0 +1,51 @@
+<div class="subline-rates">
+
+    <div class="input-row">
+        <div class="input-column span2 subline-rates-column1" ng-if="riskUnit.PremiumBase == riskUnit.PremiumBaseDefault">
+            <label>PremOps rate</label>
+            <input type="text" class="span2" disabled="disabled" value="{{riskUnit.PremOpsSubline.IsARated ? '(a)' : riskUnit.PremOpsSubline.BaseRate | currency}}" />
+            <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+        </div>
+        <div class="input-column span2">
+            <label>Desired PremOps rate</label>
+            <input class="span2 premops-rate auto-save" ng-model="riskUnit.PremOpsSubline.UnderwriterAdjustedRate" id="RiskUnits[{{::index}}].PremOpsRate" type="text" ng-blur="coverageVM.valueChanged(riskUnit.PremOpsSubline.UnderwriterAdjustedRate,riskUnit.Order,'GeneralLiability/SublineRate','',{'SublineCode': riskUnit.PremOpsSubline.Code})">
+            <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+        </div>
+    </div>
+    <div class="input-row products-subline">
+        <div class="input-column span2 subline-rates-column1" ng-if="riskUnit.PremiumBase == riskUnit.PremiumBaseDefault">
+            <label>ProdCOps rate</label>
+            <input type="text" class="span2" disabled="disabled" value="{{riskUnit.ProdCOpsSubline.IsARated ? '(a)' : riskUnit.ProdCOpsSubline.IsIncluded ? 'Included' : riskUnit.ProdCOpsSubline.BaseRate | currency}}" />
+            <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+        </div>
+        <div class="input-column span2">
+            <label>Desired ProdCOps rate</label>
+            <input class="span2 products-rate auto-save" ng-model="riskUnit.ProdCOpsSubline.UnderwriterAdjustedRate" value="{{riskUnit.ProdCOpsSubline.IsIncluded ? 'Included' : riskUnit.ProdCOpsSubline.IsExcluded ? 'Excluded' : riskUnit.ProdCOpsSubline.UnderwriterAdjustedRate}}"
+                id="RiskUnits[{{::index}}].ProdCOpsRate" type="text" ng-blur="coverageVM.valueChanged(riskUnit.ProdCOpsSubline.UnderwriterAdjustedRate,riskUnit.Order,'GeneralLiability/SublineRate','',{'SublineCode':riskUnit.ProdCOpsSubline.Code})" ng-if="!(riskUnit.ProdCOpsSubline.IsIncluded || riskUnit.ProdCOpsSubline.IsExcluded)">
+
+            <input class="span2 products-rate auto-save" disabled="disabled" value="{{riskUnit.ProdCOpsSubline.IsIncluded ? 'Included' : riskUnit.ProdCOpsSubline.IsExcluded ? 'Excluded' : riskUnit.ProdCOpsSubline.UnderwriterAdjustedRate}}" id="RiskUnits[{{::index}}].ProdCOpsRate"
+                type="text" ng-if="riskUnit.ProdCOpsSubline.IsIncluded || riskUnit.ProdCOpsSubline.IsExcluded">
+
+            <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+        </div>
+
+        <div class="input-column span2" ng-if="riskUnit.ProdCOpsSubline.IsIncluded == false">
+            <label>&nbsp;</label>
+            <input type="checkbox" id="RiskUnits[{{::index}}].ProductsExcluded" class="products-exclusion-checkbox" ng-model="riskUnit.ProdCOpsSubline.IsExcluded" ng-change="coverageVM.valueChanged(riskUnit.ProdCOpsSubline.IsExcluded,riskUnit.Order,'GeneralLiability/ExcludeSubline',riskUnit.ProdCOpsSubline.IsExcluded)">
+            <label>Exclude ProdCOps</label>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <div class="input-column span2 subline-rates-column1" ng-if="riskUnit.PremiumBase == riskUnit.PremiumBaseDefault">
+            <label>CGL rate</label>
+            <input type="text" class="span2" disabled="disabled" value="{{coverageVM.getSUM(riskUnit.Sublines,'BaseRate') | currency}}" />
+            <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+        </div>
+        <div class="input-column span2">
+            <label>Desired CGL rate</label>
+            <input type="text" class="span2 combined-rate" disabled="disabled" value="{{coverageVM.getSUM(riskUnit.Sublines,'UnderwriterAdjustedRate') | currency}}" />
+            <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+        </div>
+    </div>
+</div>

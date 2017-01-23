@@ -1,0 +1,334 @@
+<form name="additionalInfoVM.additionalInfoForm" novalidate>
+  <button-bar next="additionalInfoVM.continue(form)" save="additionalInfoVM.savePolicy(form)"
+              back="additionalInfoVM.navigateBack(form)"></button-bar>
+  <!-- Retailer Contact --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.retailerContactState">
+      <uib-accordion-heading>
+        Retailer Contact <i class="pull-right glyphicon"
+                            ng-class="{'glyphicon-chevron-down': additionalInfoVM.retailerContactState, 'glyphicon-chevron-right': !additionalInfoVM.retailerContactState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <div class="class-info">
+          If desired, you may enter a retailer contact name and agency to display at the top of the letter when
+          downloaded. (Optional)
+        </div>
+        <div class="input-row">
+          <label>Contact Name</label>
+          <input class="span4" id="RetailerContactName" name="RetailerContactName" type="text" value="">
+        </div>
+        <div class="input-row">
+          <label>Agency</label>
+          <input class="span4" id="RetailerAgencyName" name="RetailerAgencyName" type="text" value="">
+        </div>
+      </div>
+
+    </div>
+  </uib-accordion>
+  <!-- Producer Contact --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.producerContactState">
+      <uib-accordion-heading>
+        Producer Contact <i class="pull-right glyphicon"
+                            ng-class="{'glyphicon-chevron-down': additionalInfoVM.producerContactState, 'glyphicon-chevron-right': !additionalInfoVM.producerContactState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <h5 class="sub-section-heading">
+          Producer Contact
+          <a data-toggle="collapse" class="title-right opened close cbox-hidden" href="#"><i
+            class="glyphicon glyphicon-chevron-down"></i></a>
+        </h5>
+        <div class="collapse-box" style="display: none;">
+          <div class="class-info">
+            If needed, you may revise the producer's email address to ensure it is displayed accurately on the letter
+            when
+            downloaded.
+          </div>
+          <div class="input-row">
+            <label>Producer's email address</label>
+            <input class="span4" data-content="Please enter a valid e-mail address." data-mode="error"
+                   data-placement="bottom" data-rule-email="true" id="ProducerCorrespondenceEmail"
+                   name="ProducerCorrespondenceEmail" type="text" value="jjames@210433_scui.com">
+          </div>
+        </div>
+      </div>
+    </div>
+  </uib-accordion>
+  <!-- Comments --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.commentsState">
+      <uib-accordion-heading>
+        Comments <i class="pull-right glyphicon"
+                    ng-class="{'glyphicon-chevron-down': additionalInfoVM.commentsState, 'glyphicon-chevron-right': !additionalInfoVM.commentsState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <h5 class="sub-section-heading">
+          Comments
+          <a data-toggle="collapse" class="title-right opened close cbox-hidden" href="#"><i
+            class="glyphicon glyphicon-chevron-down"></i></a>
+        </h5>
+        <div class="collapse-box" style="display: none;">
+          <div class="class-info">
+            If desired, you may enter additional comments regarding this account to be displayed on the letter when
+            downloaded. (Optional)
+          </div>
+          <div class="input-row">
+            <label>Comments</label>
+            <textarea class="modal-comments" cols="20" id="Comments" name="Comments" rows="2"
+                      aria-invalid="false"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </uib-accordion>
+  <!-- Taxes and Fees --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.taxesFeesState">
+      <uib-accordion-heading>
+        Taxes & Fees <i class="pull-right glyphicon"
+                        ng-class="{'glyphicon-chevron-down': additionalInfoVM.taxesFeesState, 'glyphicon-chevron-right': !additionalInfoVM.taxesFeesState}"></i>
+      </uib-accordion-heading>
+      <div class="sub-panel collapsible">
+        <h5 class="sub-section-heading">
+          Taxes &amp; Fees <i class="glyphicon glyphicon-info-sign" data-toggle="tooltip"
+                              data-original-title="It is the responsibility of the producer to comply with state surplus lines laws and any specific state fees/ assessments/ surcharges.  If desired, you may calculate and enter the taxes &amp; fees below for this risk to display on the quote and/or binder."></i>
+          <a data-toggle="collapse" class="title-right opened close cbox-hidden" href="#"><i
+            class="glyphicon glyphicon-chevron-down"></i></a>
+        </h5>
+        <div class="collapse-box" style="display: none;">
+          <div class="class-info">
+            Premium: $750
+          </div>
+          <div class="tax-fee-wrapper">
+            <div class="tax-fee-list list-wrapper">
+              <script type="jsv#1_"></script>
+              <script type="jsv#1^"></script>
+              <script type="jsv#2_"></script>
+              <script type="jsv#3_"></script>
+              <div class="input-row">
+                <div class="span3 input-column">
+                  <label>Type</label>
+                  <select name="tax-fee-ddl" data-toggle="type-fee-text"
+                          data-link="{:Name:typeToTxt} class{merge:(Name != '') toggle='hide'}" class="span3">
+                    <option value="select">Select a type</option>
+                    <option data-jsv="#5_#6_" value="Policy Fee">Policy Fee</option>
+                    <option data-jsv="/6_#7_" value="Surplus Lines Tax">Surplus Lines Tax</option>
+                    <option data-jsv="/7_#8_" value="Stamping Fee">Stamping Fee</option>
+                    <option data-jsv="/8_#9_" value="Inspection Fee">Inspection Fee</option>
+                    <option data-jsv="/9_#10_" value="Non-Taxable Broker Fee">Non-Taxable Broker Fee</option>
+                    <option data-jsv="/10_#11_" value="Service Fee">Service Fee</option>
+                    <option data-jsv="/11_#12_" value="FL Emergency Management Fee (FIMA)">FL Emergency Management Fee
+                      (FIMA)
+                    </option>
+                    <option data-jsv="/12_#13_" value="FL Fire Marshall Regulatory Assessment">FL Fire Marshall
+                      Regulatory
+                      Assessment
+                    </option>
+                    <option data-jsv="/13_#14_" value="IL Fire Marshall Regulatory Assessment">IL Fire Marshall
+                      Regulatory
+                      Assessment
+                    </option>
+                    <option data-jsv="/14_#15_" value="KY Municipal Tax">KY Municipal Tax</option>
+                    <option data-jsv="/15_#16_" value="KY Premium Surcharge">KY Premium Surcharge</option>
+                    <option data-jsv="/16_#17_" value="MS Windpool Tax">MS Windpool Tax</option>
+                    <option data-jsv="/17_#18_" value="MT Fire Tax">MT Fire Tax</option>
+                    <option data-jsv="/18_#19_" value="NJ Fire Tax">NJ Fire Tax</option>
+                    <option data-jsv="/19_#20_" value="OR Fire Marshall Regulatory Assessment">OR Fire Marshall
+                      Regulatory
+                      Assessment
+                    </option>
+                    <option data-jsv="/20_#21_" value="WV Fire Protection Fund Surcharge">WV Fire Protection Fund
+                      Surcharge
+                    </option>
+                    <option data-jsv="/21_#22_" value="Other">Other</option>
+                  </select>
+                  <input type="text" name="type-fee-text" class="type-fee-text span3 hide"
+                         data-content="Please enter a valid type." data-mode="error"
+                         data-link="{checkOther:Name:Name} class{merge:(Name == '') toggle='hide'} readonly{:~isType(Name)}">
+                </div>
+                <div class="span3 input-column">
+                  <label>Amount</label>
+                  <div class="input-prepend">
+                    <span class="add-on">$</span>
+                    <input type="text" data-link="Amount" value="" data-content="The value must be a dollar amount."
+                           data-mode="error" class="span3 validate-money">
+                  </div>
+                </div>
+                <div class="span2 input-column">
+                  <label class="invisible">&nbsp;</label>
+                  <a href="#" class="link-text remove"><i class="glyphicon glyphicon-remove"></i>Remove</a>
+                </div>
+              </div>
+              <div class="input-row">
+                <a href="#" class="link-text add-item">
+                  <i class="glyphicon glyphicon-plus"></i>
+                  Add Another
+                </a>
+                <input type="hidden" name="taxFeeStr" data-link="serialized" value="[]">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </uib-accordion>
+  <!-- Commision --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.commisionState">
+      <uib-accordion-heading>
+        Commision <i class="pull-right glyphicon"
+                     ng-class="{'glyphicon-chevron-down': additionalInfoVM.commisionState, 'glyphicon-chevron-right': !additionalInfoVM.commisionState}"></i>
+      </uib-accordion-heading>
+      <div class="sub-panel collapsible">
+        <h5 class="sub-section-heading">
+          Commission
+          <a data-toggle="collapse" class="title-right opened close cbox-hidden" href="#"><i
+            class="glyphicon glyphicon-chevron-down"></i></a>
+        </h5>
+        <div class="collapse-box" style="display: none;">
+          <div class="class-info">
+            If desired, you may enter commission to retailer for display on quote letter (optional)
+          </div>
+          <div class="input-row">
+            <div class="span3 input-column">
+              <label for="commission">
+                Amount
+              </label>
+              <div class="input-prepend">
+                <span class="add-on">%</span>
+                <input class="span3 validate-money" data-content="Please enter a valid percentage." data-val="true"
+                       data-val-number="The field CommissionAmount must be a number." id="CommissionAmount"
+                       name="CommissionAmount" type="text" value="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </uib-accordion>
+  <!-- Minimum Earned Premium --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.minEarnedState">
+      <uib-accordion-heading>
+        Minimum Earned Premium % <i class="pull-right glyphicon"
+                                    ng-class="{'glyphicon-chevron-down': additionalInfoVM.minEarnedState, 'glyphicon-chevron-right': !additionalInfoVM.minEarnedState}"></i>
+      </uib-accordion-heading>
+      <div class="sub-panel collapsible">
+        <h5 class="sub-section-heading">
+          Minimum Earned Premium %
+          <a data-toggle="collapse" class="title-right opened close cbox-hidden" href="#"><i
+            class="glyphicon glyphicon-chevron-down"></i></a>
+        </h5>
+        <div class="collapse-box" style="display: none;">
+          <div class="class-info">
+            If an endorsement is required due to the selected MEP % value, it will be included in the forms &amp;
+            endorsement list on the letter.
+          </div>
+          <div class="input-row">
+            <div class="span3 input-column">
+              <label>
+                Minimum Earned Premium %
+              </label>
+              <div class="input-prepend">
+                <span class="add-on">%</span>
+                <select name="SelectedMinimumEarnedPercentage">
+                  <option value="0">0%</option>
+                  <option value="25" selected="'selected'">25%</option>
+                  <option value="50">50%</option>
+                  <option value="75">75%</option>
+                  <option value="100">100%</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </uib-accordion>
+  <!-- Subject To --------->
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="additionalInfoVM.subjectToState">
+      <uib-accordion-heading>
+        Subject To <i class="pull-right glyphicon"
+                      ng-class="{'glyphicon-chevron-down': additionalInfoVM.subjectToState, 'glyphicon-chevron-right': !additionalInfoVM.subjectToState}"></i>
+      </uib-accordion-heading>
+      <div class="sub-panel collapsible">
+        <h5 class="sub-section-heading">
+          Subject To
+          <a data-toggle="collapse" class="title-right opened close cbox-hidden" href="#"><i
+            class="glyphicon glyphicon-chevron-down"></i></a>
+        </h5>
+        <div class="collapse-box" style="display: none;">
+          <div class="class-info">
+            If desired, you may add or remove selected subject to statements to be displayed on the letter when
+            downloaded. (Optional)
+          </div>
+          <p>This quote is subject to the following conditions:</p>
+          <div class="conditions-wrapper dynamic-check-list" data-defaultobject="subjectiveList"
+               data-emptyobject="subjectiveEmpty">
+            <div class="input-row">
+              <div class="static-list">
+                <div class="check-row">
+                  <input type="checkbox" data-name="Current application" data-style="check"
+                         checked="&quot;checked&quot;" style="position: absolute; visibility: hidden;">
+                  <div class="ftWrapper ftCheck on">
+                    <div class="ftOption"><i class="glyphicon glyphicon-ok" style="display: inline-block;"></i></div>
+                  </div>
+                  <label>Receipt of a current completed, signed, and dated application.</label>
+                </div>
+                <div class="check-row">
+                  <input type="checkbox" data-name="Loss runs 3-5 years" data-style="check"
+                         checked="&quot;checked&quot;" style="position: absolute; visibility: hidden;">
+                  <div class="ftWrapper ftCheck on">
+                    <div class="ftOption"><i class="glyphicon glyphicon-ok" style="display: inline-block;"></i></div>
+                  </div>
+                  <label>Receipt of 3-5 years currently valued loss runs is preferred. If that is not possible, a no
+                    known loss letter signed by the insured will suffice.</label>
+                </div>
+                <div class="check-row">
+                  <input type="checkbox" data-name="Subjectivity5" data-style="check" checked="&quot;checked&quot;"
+                         style="position: absolute; visibility: hidden;">
+                  <div class="ftWrapper ftCheck on">
+                    <div class="ftOption"><i class="glyphicon glyphicon-ok" style="display: inline-block;"></i></div>
+                  </div>
+                  <label>An inspection report is required within 45 days of binding for Casualty risks with premiums of
+                    $2,500 or greater and all habitational, contractors, bars, restaurants and nightclubs.</label>
+                </div>
+                <div class="check-row">
+                  <input type="checkbox" data-name="Terrorism disclosure MKL Terr 4" data-style="check"
+                         checked="&quot;checked&quot;" style="position: absolute; visibility: hidden;">
+                  <div class="ftWrapper ftCheck on">
+                    <div class="ftOption"><i class="glyphicon glyphicon-ok" style="display: inline-block;"></i></div>
+                  </div>
+                  <label>A signed copy of the Terrorism disclosure, MKL Terr 4, is required to bind.</label>
+                </div>
+                <div class="check-row">
+                  <input type="checkbox" data-name="Subjectivity7" data-style="check" checked="&quot;checked&quot;"
+                         style="position: absolute; visibility: hidden;">
+                  <div class="ftWrapper ftCheck on">
+                    <div class="ftOption"><i class="glyphicon glyphicon-ok" style="display: inline-block;"></i></div>
+                  </div>
+                  <label>A completed, signed and dated supplemental application is required. Applications from our
+                    competitors are acceptable if all questions from our application are included.</label>
+                </div>
+              </div>
+              <div class="list-wrapper">
+                <script type="jsv#24_"></script>
+                <input type="hidden" name="subjectiveStr" data-link="serialized"
+                       value="[{&quot;Name&quot;:&quot;Current application&quot;,&quot;Text&quot;:&quot;&quot;,&quot;IsSelected&quot;:true},{&quot;Name&quot;:&quot;Loss runs 3-5 years&quot;,&quot;Text&quot;:&quot;&quot;,&quot;IsSelected&quot;:true},{&quot;Name&quot;:&quot;Subjectivity5&quot;,&quot;Text&quot;:&quot;&quot;,&quot;IsSelected&quot;:true},{&quot;Name&quot;:&quot;Terrorism disclosure MKL Terr 4&quot;,&quot;Text&quot;:&quot;&quot;,&quot;IsSelected&quot;:true},{&quot;Name&quot;:&quot;Subjectivity7&quot;,&quot;Text&quot;:&quot;&quot;,&quot;IsSelected&quot;:true}]">
+
+                <div class="input-row">
+                  <a href="#" class="link-text add-item"><i class="glyphicon glyphicon-plus"></i>Add another
+                    statement</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </uib-accordion>
+</form>

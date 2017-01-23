@@ -1,0 +1,81 @@
+<h1>liability template</h1>
+{{'Description' + riskUnit.ClassDescription}}
+{{index}}
+<div>
+  <div class="input-row">
+    <div class="input-column span1">
+      <label>Loc # <span class="required" aria-required="true">*</span></label>
+      <input class="span1 auto-save " ng-model="riskUnit.LocationNumber" id="LocationNumber-{{::index}}" type="text"
+             aria-required="true">
+    </div>
+    <div class="input-column span7">
+      <label> Description of Operations (optional to display on quote letter)</label>
+      <input class="span7 auto-save " ng-model="riskUnit.CustomDescription"
+             id="CustomDescription-{{::index}}" type="text">
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-column span2">
+      <label>Zip code <span class="required" aria-required="true">*</span></label>
+      <input class="span2 zip-code auto-save " ng-model="riskUnit.ZipCode"
+             id="ZipCode-{{::index}}" type="text" aria-required="true">
+    </div>
+    <div class="input-column span5">
+      <label>State</label>
+      <label><span ng-bind="riskUnit.StateCode"></span></label>
+    </div>
+    <div class="input-column span1">
+      <label>Territory</label>
+      <label><span ng-bind="riskUnit.Territory"></span></label>
+    </div>
+  </div>
+  <div class="input-row">
+    <div class="input-column span4">
+      <label>Premium base<span class="required" aria-required="true">*</span></label>
+      <select class="premium-base-dropdown span4 auto-save " data-mode="error" data-placement="bottom"
+              data-responsemethod="premiumBaseUpdated" data-saveparameters="classOrder=2"
+              data-service="GeneralLiability/PremiumBase" data-trigger="manual" id="GlLine_RiskUnits_2__PremiumBaseDDL"
+              name="GlLine.RiskUnits[2].PremiumBaseDDL">
+        <option selected="selected" value="Per $1,000 of Gross Sales">Gross Sales</option>
+        <option value="Per $1,000 of Payroll">Payroll</option>
+
+      </select>
+    </div>
+    <div class="input-column span2">
+      <label>Premium base divisor</label>
+      <input class="premium-base-divisor span2" disabled="disabled" id="GlLine_RiskUnits_2__PremiumBaseDivisor"
+             name="GlLine.RiskUnits[2].PremiumBaseDivisor" type="text" value="1000">
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-column span2">
+      <label>Exposure<span class="required" aria-required="true">*</span></label>
+
+      <input class="span2 exposure-qty validate-fullNumber auto-save " data-content="Please enter a valid exposure."
+             data-mode="error" data-placement="bottom" data-relatedfield="Exposure" data-responsemethod=""
+             data-rule-required="true" data-saveparameters="classOrder=2" data-service="GeneralLiability/Exposure"
+             data-trigger="manual" id="GlLine_RiskUnits_2__Exposure" name="GlLine.RiskUnits[2].Exposure" type="text"
+             value="0" aria-required="true">
+      <p class="sub-small">Premium base: <span class="bold premium-base">Gross Sales</span></p>
+      <br>
+      <div class="hide message-block" data-relatedfield="Exposure">
+        <div class="message hide authority-field-details"></div>
+        <div class="hide field-validation-block validation-error validation-block">
+          <div class="glyphicon-exclamation-sign glyphicon"></div>
+          <div class="validation-message"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-repeat="(questionIndex, questionItem) in riskUnit.Questions">
+    <add-question question="questionItem" ng-model="questionItem.AnswerValue" index="questionIndex"
+                  read-only="questionItem.IsReadOnly"></add-question>
+  </div>
+
+
+
+
+
+</div>

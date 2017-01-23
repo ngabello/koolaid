@@ -1,0 +1,29 @@
+<div class="input-row">
+    <div class="input-column span1">
+        <label>Loc # <span class="required" aria-required="true">*</span></label>
+        <input class="span1 auto-save" ng-model="riskUnit.LocationNumber" id="RiskUnits[{{::index}}].LocationNumber" type="text" ng-blur="coverageVM.valueChanged(riskUnit.LocationNumber,riskUnit.Order,'GeneralLiability/LocationNumber')">
+    </div>
+    <div class="input-column span7">
+        <label> Description of Operations (optional to display on quote letter)</label>
+        <input class="span7 zip-code auto-save" ng-model="riskUnit.CustomDescription" id="RiskUnits[{{::index}}].CustomDescription" type="text" ng-blur="coverageVM.valueChanged(riskUnit.CustomDescription,riskUnit.Order,'CustomDescription')">
+    </div>
+</div>
+
+<div class="input-row">
+    <div class="input-column span2">
+        <label>Zip code <span class="required" aria-required="true">*</span></label>
+        <input class="span2 zip-code auto-save" ng-model="riskUnit.ZipCode" id="RiskUnits[{{::index}}].ZipCode" type="text" ng-blur="coverageVM.valueChanged(riskUnit.ZipCode,riskUnit.Order,'GeneralLiability/ZipCode')">
+
+        <display-messages messages="riskUnit.Messages" field-name="'ZipCode'"></display-messages>
+    </div>
+    <div class="input-column span5">
+        <label>State</label>
+        <input class="span5 state-code" disabled="disabled" id="RiskUnits[{{::index}}].StateCode" type="text" value="{{riskUnit.StateCode ? riskUnit.StateCode + ' - ' + riskUnit.State : ''}}">
+
+        <display-messages messages="riskUnit.Messages" field-name="'StateCode'"></display-messages>
+    </div>
+    <div class="input-column span1">
+        <label>Territory</label>
+        <input class="span1 territory" disabled="disabled" id="RiskUnits[{{::index}}].Territory" type="text" value="{{riskUnit.Territory}}">
+    </div>
+</div>

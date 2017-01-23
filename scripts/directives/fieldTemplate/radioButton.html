@@ -1,0 +1,13 @@
+<div class="question-row input-row">
+    <div class="input-column">
+        <div class="question-label">
+            <label class="question-label" ng-bind-html="question.Verbiage | trust"><span ng-if="question.IsRequired" class='required'> *</span></label>
+            <div ng-repeat="option in question.Answers" class="check-row">
+                <label>
+                    <input name="{{question.Code}}" type="radio" value="{{option.Value}}" ng-model="question.AnswerValue" ng-change="valueChanged()"/>
+                    <label ng-bind="option.Verbiage"></label>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

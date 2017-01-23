@@ -1,0 +1,45 @@
+<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="button-template-url">
+  <a ng-click="classGuide.closeLocation()" class="close"><i class="glyphicon glyphicon-remove"></i></a>
+  <h5>Change Location</h5>
+  <div class="input-row">
+    <label>Change by</label>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="locale-by-state" name="locationSelect" checked="checked" ng-change="classGuide.locationChange.chkZip = false" ng-model="classGuide.locationChange.chkState">
+    <label for="locale-by-state">State</label>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="locale-by-zip" name="locationSelect" ng-change="classGuide.locationChange.chkState = false" ng-model="classGuide.locationChange.chkZip">
+    <label for="locale-by-zip">Zip code</label>
+  </div>
+  <div ng-if="classGuide.locationChange.chkState">
+    <div class="input-row">
+      <label for="locale-state-select">State <span class="required" aria-required="true">*</span></label>
+      <select class="select-menu" id="locale-state-select" name="classCodeSelect"
+              ng-model="classGuide.locationChange.state"
+              ng-options="a.value as a.desc for a in classGuide.stateList"
+              ng-required="classGuide.locationChange.chkState"
+              autocomplete="off">
+      </select>
+    </div>
+    <div class="input-row">
+      <label for="locale-territory-select">Territory </label>
+      <select class="select-menu" id="locale-territory-select" name="LocaleTerritory"
+              ng-model="classGuide.locationChange.territory"
+              ng-options="a.Code as a.Description for a in classGuide.locationChange.territories"
+              ng-required="classGuide.locationChange.chkState"
+              autocomplete="off">>
+        <option value="">--- Select Value ---</option>
+      </select>
+    </div>
+  </div>
+  <div ng-if="classGuide.locationChange.chkZip">
+    <div class="input-row">
+      <label for="locale-zip-box">Zip code <span class="required" aria-required="true">*</span></label>
+      <input type="text" name="LocaleZipCode" ng-model="classGuide.locationChange.zipCode" id="locale-zip-box">
+    </div>
+  </div>
+  <div class="input-row">
+    <button ng-click="classGuide.updateLocation()" class="btn" id="locale-update">Update</button>
+  </div>
+</ul>

@@ -1,0 +1,15 @@
+<div class="questions-section">
+    <div ng-repeat="(group, questions) in $ctrl.list | groupBy: 'QuestionTypeId'">
+        <div ng-if="group !='null'" uib-accordion-group class="panel-default" is-open="$ctrl.AccordionState">
+            <uib-accordion-heading>
+                {{$ctrl.getQuestionType(group)}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.AccordionState, 'glyphicon-chevron-right': !$ctrl.AccordionState}"></i>
+            </uib-accordion-heading>
+            <div ng-repeat="(questionIndex, questionItem) in questions">
+                <add-question question="questionItem" index="questionIndex" class-order="$ctrl.classOrder" service="$ctrl.service" lob="$ctrl.lob" policy="$ctrl.policy" on-update="$ctrl.onUpdate({service : service, params : params})"></add-question>
+            </div>
+        </div>
+        <div ng-if="group =='null'" ng-repeat="(questionIndex, questionItem) in questions">
+            <add-question question="questionItem" index="questionIndex" class-order="$ctrl.classOrder" service="$ctrl.service" lob="$ctrl.lob" policy="$ctrl.policy" on-update="$ctrl.onUpdate({service : service, params : params})"></add-question>
+        </div>
+    </div>
+</div>

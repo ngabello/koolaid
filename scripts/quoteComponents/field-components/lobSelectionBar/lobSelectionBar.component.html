@@ -1,0 +1,16 @@
+<div class="row">
+  <div ng-if="$ctrl.availableTabs.length > 0">
+    <div ng-repeat="lob in ::$ctrl.availableTabs">
+      <div ng-class="{true:'bold'}[lob.Selected]">
+        <span ng-click="$ctrl.goToLob(lob)">{{::lob.Desc}}</span>
+        <i ng-click='$ctrl.removeLob(lob)'><span
+          class='glyphicon glyphicon-remove'></span></i>
+      </div>
+    </div>
+  </div>
+  <div ng-if="$ctrl.policy.PackageOptions.length > 0">
+    <div>
+      <i ng-click='$ctrl.addLob()'><span class="glyphicon glyphicon-plus"></span></i>
+    </div>
+  </div>
+</div>

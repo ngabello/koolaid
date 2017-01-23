@@ -1,0 +1,13 @@
+<h3>Add DropDown here</h3>
+<div class="question-row input-row">
+    <div class="input-column">
+        <div class="question-label">
+            <label class="question-label">{{question.Verbiage}}<span ng-if="question.IsRequired" class='required'> *</span></label>
+            <select ng-model="question.AnswerValue"
+                  ng-options="a.Value as a.Verbiage for a in question.Answers"
+                  autocomplete="off" ng-change="valueChanged()">
+                <option value="">Select One</option>
+            </select>
+        </div>
+    </div>
+</div>   

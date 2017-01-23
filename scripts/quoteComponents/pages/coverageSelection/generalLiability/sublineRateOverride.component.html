@@ -1,0 +1,51 @@
+<div class="subline-rates">
+    <div ng-repeat="subline in riskUnit.Sublines">
+<div class="input-row" ng-if="subline.Code == 'PremOps'">
+    <div class="input-column span2 subline-rates-column1" ng-if="riskUnit.PremiumBase == riskUnit.PremiumBaseDefault">
+        <label>PremOps rate</label>
+        <input type="text" class="span2" disabled="disabled" value="{{subline.IsARated ? '(a)' : subline.BaseRate | currency}}" />
+        <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+    </div>
+    <div class="input-column span2">
+        <label>Desired PremOps rate</label>
+         <input class="span2 premops-rate auto-save" ng-model="subline.UnderwriterAdjustedRate"
+             id="RiskUnits[{{::index}}].PremOpsRate" type="text" 
+             ng-blur="coverageVM.valueChanged(subline.UnderwriterAdjustedRate,riskUnit.Order,'GeneralLiability/SublineRate','',{'SublineCode': subline.Code})">
+        <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+    </div>
+</div>
+<div class="input-row products-subline" ng-if="subline.Code == 'ProdCOps'">
+    <div class="input-column span2 subline-rates-column1" ng-if="riskUnit.PremiumBase == riskUnit.PremiumBaseDefault">
+        <label>ProdCOps rate</label>
+        <input type="text" class="span2" disabled="disabled" value="{{subline.IsARated ? '(a)' : subline.IsIncluded ? 'Included' : subline.BaseRate | currency}}" />
+        <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+    </div>
+    <div class="input-column span2">
+        <label>Desired ProdCOps rate</label>
+         <input class="span2 products-rate auto-save" ng-model="subline.UnderwriterAdjustedRate"
+             value="{{subline.IsIncluded ? 'Included' : subline.IsExcluded ? 'Excluded' : subline.UnderwriterAdjustedRate}}"   
+             id="RiskUnits[{{::index}}].ProdCOpsRate" type="text" ng-disabled="subline.IsIncluded || subline.IsExcluded"
+             ng-blur="coverageVM.valueChanged(subline.UnderwriterAdjustedRate,riskUnit.Order,'GeneralLiability/SublineRate','',{'SublineCode':subline.Code})">
+        <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+    </div>
+
+        <div class="input-column span2" ng-if="subline.IsIncluded == false">
+            <label>&nbsp;</label>
+            <input type="checkbox" id="RiskUnits[{{::index}}].ProductsExcluded" class="products-exclusion-checkbox" ng-model="subline.IsExcluded"  ng-change="coverageVM.valueChanged(subline.IsExcluded,riskUnit.Order,'GeneralLiability/ExcludeSubline',subline.IsExcluded)">
+            <label>Exclude ProdCOps</label>
+        </div>
+</div>
+    </div>
+<div class="input-row">
+    <div class="input-column span2 subline-rates-column1" ng-if="riskUnit.PremiumBase == riskUnit.PremiumBaseDefault">
+        <label>CGL rate</label>
+        <input type="text" class="span2" disabled="disabled" value="{{coverageVM.getSUM(riskUnit.Sublines,'BaseRate') | currency}}" />
+        <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+    </div>
+    <div class="input-column span2">
+        <label>Desired CGL rate</label>
+        <input type="text" class="span2 combined-rate" disabled="disabled" value="{{coverageVM.getSUM(riskUnit.Sublines,'UnderwriterAdjustedRate') | currency}}" />
+        <p class="sub-small">Limit: <span class="bold">$1m/2m</span></p>
+    </div>
+</div>
+</div>    

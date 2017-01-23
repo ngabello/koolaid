@@ -1,0 +1,53 @@
+<div class="modal-body section" style="max-height: 830px; overflow-y: auto;">
+    <div ng-repeat="(riskUnitIndex, riskUnit) in notesModalVM.riskUnits">
+        <div class="modal-title">
+            <h3><span ng-bind="riskUnit.ClassCode"></span> - <span ng-bind="riskUnit.ClassDescription"></span></h3>
+        </div>
+        <div ng-if="(notesModalVM.isInternalUser && riskUnit.InternalNotes) || riskUnit.Notes">
+            <uib-accordion close-others="oneAtATime">
+                <!-- Notes Accordian -->
+                <div uib-accordion-group class="panel-default" is-open="riskUnit.accordionState.notes">
+                    <uib-accordion-heading>
+                        Notes <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': riskUnit.accordionState.notes, 'glyphicon-chevron-right': !riskUnit.accordionState.notes}"></i>
+                    </uib-accordion-heading>
+                    <div ng-bind-html="riskUnit.Notes | trust"></div>
+                    <!-- Internal Notes -->
+                    <div ng-if="notesModalVM.isInternalUser && riskUnit.InternalNotes" uib-accordion-group class="panel-default" is-open="riskUnit.accordionState.internalNotes">
+                        <uib-accordion-heading>
+                            Internal Notes <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': riskUnit.accordionState.internalNotes, 'glyphicon-chevron-right': !riskUnit.accordionState.internalNotes}"></i>
+                        </uib-accordion-heading>
+                        <div ng-bind-html="riskUnit.InternalNotes | trust"></div>
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+        <div ng-if="riskUnit.showGuidelines()">
+            <uib-accordion close-others="oneAtATime">
+                <!-- Guidelines Accordian -->
+                <div uib-accordion-group class="panel-default" is-open="riskUnit.accordionState.guidelines">
+                    <uib-accordion-heading>
+                        Guidelines <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': riskUnit.accordionState.guidelines, 'glyphicon-chevron-right': !riskUnit.accordionState.guidelines}"></i>
+                    </uib-accordion-heading>
+                    <div uib-accordion-group class="panel-default" is-open="guideline.isOpen" ng-init="guideline.isOpen = true" ng-repeat="(guidelineType,guideline) in riskUnit.Guidelines">
+                        <uib-accordion-heading>
+                            {{riskUnit.getGuidelineTypeName(guideline[0].GuidelineType)}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': guideline.isOpen, 'glyphicon-chevron-right': !guideline.isOpen}"></i>
+                        </uib-accordion-heading>
+                        <ul>
+                            <div ng-repeat="item in guideline">
+                                <li>
+                                    <div ng-bind-html="item.Name | trust"></div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+        <div ng-if="!riskUnit.showGuidelines()">
+            Published notes and guidelines do not exist for this class. Please contact your Markel underwriter with any eligibility concerns.
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="notesModalVM.close()">Close</button>
+    </div>
+</div>

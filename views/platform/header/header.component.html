@@ -1,0 +1,210 @@
+<header>
+  <div id="mastHeadWrapper" class="head-wrapper">
+
+    <div id="mastHeadBorderLeft">
+      <div id="mastHeadBorderRight">
+        <div id="mastHead" class="s4-notdlg">
+          <!-- Site Logo (links back to site home page) -->
+          <div id="logo">
+            <!-- NOTE: By applying the "s4-notdlg" class to an element, that element will be hidden from SharePoint dialog windows. -->
+            <a href="/" class="unlock-transaction">
+              <img src="/Content/images/logo-Markel.png" alt="Markel logo">
+            </a>
+          </div>
+          <h1 id="siteTitle" style="font-family: Tahoma,arial,sans-serif;">Markel Online</h1>
+          <!-- end Site Logo -->
+
+          <div id="mastHeadRight" class="noindex">
+            <!-- Welcome / Login Control -->
+            <div id="welcomeMenu" class="noindex">
+                                        <span id="globalLinks">
+                                            <a id="globalLinksMyProfile" href="/Pages/UserProfile.aspx"
+                                               class="unlock-transaction">My Profile</a>
+                                            <a id="globalLinksLogOut"
+                                               href="/_layouts/Mkl.WB.Mol.Core/CustomSignOut.aspx"
+                                               class="unlock-transaction">Log Out</a>
+                                        </span>
+              <div id="welcomeMsg" class="noindex">
+                Welcome, <a>{{::headerVM.headerDocument.SSO_FIRSTNAME}} {{::headerVM.headerDocument.SSO_LASTNAME}}</a>
+              </div>
+              <!--end welcomeMsg-->
+              <!-- MultiLingual User Interface menu -->
+
+            </div>
+            <!--end welcomeMenu-->
+            <!-- end Welcome / Login Control -->
+
+
+            <!--end mastHeadSearch-->
+            <!-- end Search Box -->
+          </div>
+          <!--end mastHeadRight-->
+        </div>
+        <!--end mastHead-->
+      </div>
+      <!--end mastheadBorderRight-->
+    </div>
+    <!--end mastheadBorderLeft-->
+
+    <!-- Primary Navigation -->
+    <div id="primaryNavBorderLeft">
+      <div id="primaryNavBorderRight">
+        <div id="primaryNav" class="s4-notdlg">
+          <!-- Primary Navigation Menu (set to use the new Simple Rendering) -->
+          <div id="nav-menu" class="noindex">
+                                    <span>
+                                        <ul class='topnav'><li><a href='/quickquote/homeredirect'
+                                                                  class='unlock-transaction'>Home</a></li><li><a
+                                          class='notLinked'> Products</a><div class='megaMenu'><ul><li><a
+                                          href='/classguide' class='unlock-transaction'> Class Guide </a></li><li><a
+                                          href='/Products/Pages/Mktng.aspx' class='unlock-transaction'> Marketing Materials</a></li><li><a
+                                          href='/Products/lines/Pages/default.aspx' class='unlock-transaction'> Product Lines</a><ul><li><ul><li><a
+                                          href='/Products/lines/casualty/Pages/default.aspx' class='unlock-transaction'> Casualty</a><ul><li><a
+                                          href='/Products/lines/casualty/Pages/BindCas.aspx' class='unlock-transaction'>Binding</a></li><li><a
+                                          href='/Products/lines/casualty/Pages/BkgCas.aspx' class='unlock-transaction'> Brokerage</a></li><li><a
+                                          href='/Products/lines/casualty/Pages/ContractorsPC.aspx'
+                                          class='unlock-transaction'> Contractors P&C</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Environmental Liability</a></li><li><a
+                                          href='/Products/lines/xsumbrella/Pages/default.aspx'
+                                          class='unlock-transaction'> Excess & Umbrella</a></li><li><a
+                                          href=' /Products/lines/casualty/Pages/HiredandNon-OwnedAuto.aspx'
+                                          class='unlock-transaction'> Hired and Non-Owned Auto</a></li><li><a
+                                          href='/Products/lines/liqliab/Pages/default.aspx' class='unlock-transaction'> Liquor Liability</a></li><li><a
+                                          href='/Products/lines/casualty/Pages/Products.aspx'
+                                          class='unlock-transaction'> Products Liability</a></li></ul></li><li><a
+                                          href='/Products/lines/Pages/DataBreach.aspx' class='unlock-transaction'> DataBreach</a></li></ul></li><li><ul><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Environmental & Energy</a><ul><li><a
+                                          href=' /Products/lines/environmental/Pages/ContractPoll.aspx'
+                                          class='unlock-transaction'> Contractors Pollution Liability (CPL)</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/EnviroFlex.aspx'
+                                          class='unlock-transaction'> Enviro Flex (EIL)</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Environmental Commercial</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Environmental Professional</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Excess Liability</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Products Pollution</a></li></ul></li><li><a
+                                          href='/Products/lines/xsumbrella/Pages/default.aspx'
+                                          class='unlock-transaction'> Excess & Umbrella </a><ul><li><a
+                                          href='/Products/lines/xsumbrella/Pages/BindingXS.aspx'
+                                          class='unlock-transaction'>Binding</a></li><li><a
+                                          href='/Products/lines/xsumbrella/Pages/Brokerage.aspx'
+                                          class='unlock-transaction'> Brokerage</a></li></ul></li><li><a
+                                          href='/Products/lines/IM/Pages/default.aspx' class='unlock-transaction'> Inland Marine</a><ul><li><a
+                                          href='/Products/lines/IM/Pages/BindingIM.aspx' class='unlock-transaction'>Binding</a></li><li><a
+                                          href='/Products/lines/IM/Pages/BkgIM.aspx' class='unlock-transaction'> Brokerage</a></li><li><a
+                                          href='/Products/lines/IM/Pages/BuildersRisk.aspx' class='unlock-transaction'> Builder's Risk</a></li></ul></li></ul></li><li><ul><li><a
+                                          href='/Products/lines/liqliab/Pages/default.aspx' class='unlock-transaction'> Liquor Liability </a><ul><li><a
+                                          href='/Products/lines/liqliab/Pages/Binding.aspx' class='unlock-transaction'>Binding</a></li><li><a
+                                          href='/Products/lines/liqliab/Pages/BkgLiqLiab.aspx'
+                                          class='unlock-transaction'> Brokerage</a></li></ul></li><li><a
+                                          href='/Products/lines/ML/Pages/default.aspx' class='unlock-transaction'> Management Liability </a><ul><li><a
+                                          href='/Products/lines/ML/Pages/default.aspx' class='unlock-transaction'> D&O - Not-For-Profit</a></li><li><a
+                                          href='/Products/lines/ML/Pages/PrivateDO.aspx' class='unlock-transaction'> D&O - Private Company</a></li><li><a
+                                          href='/Products/lines/ML/Pages/default.aspx'
+                                          class='unlock-transaction'>EPLI</a></li><li><a
+                                          href='/Products/lines/ML/Pages/default.aspx' class='unlock-transaction'> Fiduciary Liability</a></li><li><a
+                                          href='/Products/lines/ML/Pages/TD.aspx' class='unlock-transaction'> Tenant Discrimination</a></li></ul></li><li><a
+                                          href='/Products/lines/healthcare/Pages/default.aspx'
+                                          class='unlock-transaction'> Medical Professional Liability </a><ul><li><a
+                                          href='/Products/lines/healthcare/Pages/AlliedHealthcare.aspx'
+                                          class='unlock-transaction'> Allied Healthcare</a></li><li><a
+                                          href=' /Products/lines/healthcare/Pages/PhysDentPod.aspx'
+                                          class='unlock-transaction'> Physicians, Dentists, Podiatrists</a></li></ul></li><li><a
+                                          href='/Products/lines/Pages/OM.aspx'
+                                          class='unlock-transaction'> Ocean Marine</a></li></ul></li><li><ul><li><a
+                                          href='/Products/lines/proliab/Pages/default.aspx' class='unlock-transaction'> Professional Liability and E&O</a><ul><li><a
+                                          href='/Products/lines/proliab/Pages/AE.aspx' class='unlock-transaction'> Architects & Engineers</a></li><li><a
+                                          href=' /Products/lines/proliab/Pages/BindingMiscProfessional.aspx'
+                                          class='unlock-transaction'> Binding Miscellaneous Professional</a></li><li><a
+                                          href='/Products/lines/Pages/DataBreach.aspx' class='unlock-transaction'> DataBreach</a></li><li><a
+                                          href='/Products/lines/environmental/Pages/default.aspx'
+                                          class='unlock-transaction'> Environmental & Energy</a></li><li><a
+                                          href='/Products/lines/proliab/Pages/InfoPro.aspx' class='unlock-transaction'> InfoPro - IT E&O</a></li><li><a
+                                          href='/Products/lines/proliab/Pages/InsAB.aspx' class='unlock-transaction'> Insurance Agents & Brokers</a></li><li><a
+                                          href='/Products/lines/proliab/Pages/Lawyers.aspx' class='unlock-transaction'>Lawyers</a></li><li><a
+                                          href='/Products/lines/proliab/Pages/MiscEO.aspx' class='unlock-transaction'> Miscellaneous E&O</a></li><li><a
+                                          href='/Products/lines/ML/Pages/TD.aspx' class='unlock-transaction'> Tenant Discrimination</a></li></ul></li><li><a
+                                          href='/Products/lines/property/Pages/default.aspx' class='unlock-transaction'> Property </a><ul><li><a
+                                          href='/Products/lines/property/Pages/BindProp.aspx'
+                                          class='unlock-transaction'>Binding</a></li><li><a
+                                          href='/Products/lines/property/Pages/BkgProp.aspx' class='unlock-transaction'> Brokerage</a></li><li><a
+                                          href='/Products/lines/IM/Pages/BuildersRisk.aspx' class='unlock-transaction'> Builder's Risk</a></li><li><a
+                                          href='/Products/lines/property/Pages/EquipBD.aspx' class='unlock-transaction'> Equipment Breakdown</a></li><li><a
+                                          href='/Products/lines/IM/Pages/default.aspx' class='unlock-transaction'> Inland Marine</a></li></ul></li></ul></li><li><ul><li><a
+                                          href='/Products/lines/Pages/PublicEntity.aspx' class='unlock-transaction'> Public Entity Pools </a></li><li><a
+                                          href='/Products/lines/railroad/Pages/default.aspx' class='unlock-transaction'> Railroad </a><ul><li><a
+                                          href='/Products/lines/railroad/Pages/Firstparty.aspx'
+                                          class='unlock-transaction'> Railroad - First-Party</a></li></ul></li><li><a
+                                          href='/Products/lines/transportation/Pages/default.aspx'
+                                          class='unlock-transaction'> Transportation</a><ul><li><a
+                                          href='/Products/lines/transportation/Pages/AutoPD.aspx'
+                                          class='unlock-transaction'> Auto Physical Damage</a></li><li><a
+                                          href=' /Products/lines/casualty/Pages/HiredandNon-OwnedAuto.aspx'
+                                          class='unlock-transaction'> Hired and Non-Owned Auto</a></li><li><a
+                                          href='/Products/lines/IM/Pages/default.aspx' class='unlock-transaction'> Inland Marine</a></li></ul></li></ul></li></ul></li></ul></div></li><li><a
+                                          class='notLinked'> Underwriting Toolkit</a><div class='megaMenu'><ul><li><a
+                                          href='/Toolkit/Pages/Announcements.aspx' class='unlock-transaction'> New! Announcements</a></li><li><a
+                                          href='/Toolkit/Pages/FAQ.aspx' class='unlock-transaction'> General Underwriting Information - FAQ's</a></li><li><a
+                                          class='unlock-transaction notLinked'> Guidelines</a><ul><li><ul><li><a
+                                          href='/Toolkit/Guidelines/Pages/Storm.aspx' class='unlock-transaction'> Approaching Storm Guidelines</a></li></ul></li><li><ul><li><a
+                                          href='/Toolkit/Guidelines/Pages/Terrorism.aspx' class='unlock-transaction'> Terrorism Guidelines</a></li></ul></li><li><ul><li><a
+                                          href=' /SiteCollectionDocuments/Underwriting%20Toolkit/Wind%20Guidelines.pdf'
+                                          class='unlock-transaction'> Wind Guidelines</a></li></ul></li></ul></li><li><a
+                                          href='/Toolkit/Issuance/Pages/default.aspx' class='unlock-transaction'> Issuance</a><ul><li><ul><li><a
+                                          href='/Toolkit/Issuance/Pages/PPS.aspx'
+                                          class='unlock-transaction'>PPS</a></li></ul></li><li><ul><li><a
+                                          href='/Toolkit/Issuance/Pages/iPPS.aspx'
+                                          class='unlock-transaction'>iPPS</a></li></ul></li></ul></li><li><a
+                                          class='unlock-transaction notLinked'>Tools</a><ul><li><ul><li><a
+                                          href='/Toolkit/Tools/Pages/QuickQuote.aspx' class='unlock-transaction'> Quick Quote Tutorials</a></li><li><a
+                                          href='/distancetocoast/index'
+                                          class='unlock-transaction'> Distance to Coast</a></li></ul></li><li><ul><li><a
+                                          href='/MSBAccess/Valuations'
+                                          class='unlock-transaction'> Property Valuations</a></li><li><a
+                                          href='/Toolkit/Tools/Pages/ISOTerritoryLists.aspx#Virginia'
+                                          class='unlock-transaction'> ISO Territory Lists</a></li><li><a
+                                          href=' /SiteCollectionDocuments/Underwriting%20Toolkit/MinExecPayroll.pdf'
+                                          class='unlock-transaction'> Minimum Executive Payroll Chart</a></li><li><a
+                                          href='/Toolkit/Tools/Pages/FormsUpdates.aspx' class='unlock-transaction'> Forms Updates</a></li></ul></li><li><ul><li><a
+                                          href='/Toolkit/Tools/Pages/TopClasses.aspx' class='unlock-transaction'> Top Classes</a></li><li><a
+                                          href='/Toolkit/Tools/Pages/MandatoryForms.aspx' class='unlock-transaction'> Mandatory Forms</a></li></ul></li></ul></li></ul></div></li><li><a
+                                          href='/forms/search' class='unlock-transaction'> Forms & Applications</a></li><li><a
+                                          class='notLinked'> Reporting</a><div class='megaMenu'><ul><li><a
+                                          href='/reporting/Pages/AgencyPrem.aspx' class='unlock-transaction'> Agency Premium and Loss Report</a></li><li><a
+                                          href='/reporting/Pages/BrokerPrem.aspx' class='unlock-transaction'> Broker Premium Report (YTD)</a></li><li><a
+                                          href='/reporting/Pages/ExpirationList.aspx' class='unlock-transaction'> Expiration List Report</a></li><li><a
+                                          href='/reporting/Pages/HitRatio.aspx' class='unlock-transaction'> Hit Ratio Report</a></li><li><a
+                                          href='/reporting/Pages/AgencyCAT.aspx' class='unlock-transaction'> Agency CAT Exposure Report</a></li><li><a
+                                          href='/LossRun/index'
+                                          class='unlock-transaction'> Loss Run Report</a></li></ul></div></li><li><a
+                                          href='/Claims/Pages/default.aspx' class='unlock-transaction'>Claims</a></li><li><a
+                                          class='notLinked'> Contact Us</a><div class='megaMenu'><ul><li><a
+                                          href='/Pages/Contact.aspx#MidSouth' class='unlock-transaction'> Mid South</a></li><li><a
+                                          href='/Pages/Contact.aspx#Midwest' class='unlock-transaction'>Midwest</a></li><li><a
+                                          href='/Pages/Contact.aspx#Northeast' class='unlock-transaction'> Northeast</a></li><li><a
+                                          href='/Pages/Contact.aspx#Southeast' class='unlock-transaction'> Southeast</a></li><li><a
+                                          href='/Pages/Contact.aspx#West' class='unlock-transaction'>West</a></li><li><a
+                                          href='/Pages/Contact.aspx#WholesaleLeadership' class='unlock-transaction'> Wholesale Leadership</a></li></ul></div></li></ul>
+
+                                    </span>
+          </div>
+          <!-- end Primary Navigation Menu -->
+
+          <!-- Primary Navigation Publishing Data Source -->
+
+          <!-- end Primary Navigation Publishing Data Source -->
+        </div>
+        <!--end primaryNav-->
+        <!-- end Primary Navigation -->
+      </div>
+      <!--end primaryNavBorderRight-->
+    </div>
+    <!--end primaryNavBorderLeft-->
+  </div>
+  <!--end mastHeadWrapper-->
+</header>

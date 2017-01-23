@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/Markel_MOL.css">
+  <link rel="stylesheet" href="styles/Markel_control_megamenu.css">
+  <link rel="stylesheet" href="styles/class-search.css">
+  <!-- endbuild -->
+
+</head>
+<body ng-app="markelOnlineApp">
+<div id="s4-bodyContainer">
+  <div>
+    <!--[if lte IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+      your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view name="header"></div>
+    <!--CONTENT-->
+    <div id="pageWellBorderLeft">
+      <div id="pageWellBorderRight">
+        <div id="pageWell">
+          <div id="panelContainer">
+
+            <div ng-controller="mainController" id="content">
+              <spinner class="" name="processingSpinner">
+                <div ng-init="loadingMsg = 'Processing....'" ng-include="'../views/platform/loadingTemplate.html'"></div>
+              </spinner>
+              <div class="loading"></div>
+              <div id="mainContent" ui-view></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ui-view name="footer"></div>
+  </div>
+</div>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+  !function (A, n, g, u, l, a, r) {
+    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+  }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
+
+
+<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
+<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-spinners/dist/angular-spinners.min.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/ng-idle/angular-idle.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/angular-loader/angular-loader.js"></script>
+<script src="bower_components/angular-loggly-logger/angular-loggly-logger.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+<script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+<script src="bower_components/tinymce/tinymce.js"></script>
+<script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+<script src="bower_components/angular-applicationinsights/dist/angular-applicationinsights.min.js"></script>
+<script src="bower_components/angular-applicationinsights/dist/angular-applicationinsights.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+<!-- Utilities scripts -->
+<script src="scripts/utilities/environment/envconfig.js"></script>
+<script src="scripts/utilities/enumerations.js"></script>
+<script src="scripts/utilities/stringUtilities.js"></script>
+
+<!--QuickQuote configuration -->
+<script src="scripts/configuration/quickQuoteConfig.js"></script>
+
+<!-- Modal scripts -->
+<script src="scripts/services/platform/modal/modalService.js"></script>
+<script src="scripts/services/platform/modal/module.js"></script>
+<script src="scripts/services/platform/modal/modalControllers/systemErrorComponent.js"></script>
+<script src="scripts/services/platform/modal/modalControllers/modalNotes.component.js"></script>
+<script src="scripts/services/platform/modal/modalControllers/modalConfirm.component.js"></script>
+<script src="scripts/services/platform/modal/modalControllers/modalConfirmDelTrans.component.js"></script>
+<script src="scripts/services/platform/modal/attachments/attachments.component.js"></script>
+
+<!-- Error scripts -->
+<script src="scripts/services/platform/error/errorService.js"></script>
+<script src="scripts/services/platform/error/module.js"></script>
+
+<!-- Directives -->
+<script src="scripts/directives/onlyDigits.js"></script>
+<script src="scripts/directives/addQuestion.js"></script>
+
+<!-- Filters -->
+<script src="scripts/filters/xmlTrust.js"></script>
+<script src="scripts/filters/module.js"></script>
+
+<!-- Models -->
+<script src="scripts/models/policyReferralRequest.js"></script>
+<script src="scripts/models/policySearchRequest.js"></script>
+<script src="scripts/models/policyModel.js"></script>
+<script src="scripts/models/modelHelperService.js"></script>
+<script src="scripts/models/accountInfoModel.js"></script>
+<script src="scripts/models/decisionModel.js"></script>
+<script src="scripts/models/dashboardModel.js"></script>
+<script src="scripts/models/module.js"></script>
+
+<!-- Platform scripts -->
+<script src="scripts/services/platform/apiServices/deliveryService.js"></script>
+<script src="scripts/services/platform/apiServices/decisionService.js"></script>
+<script src="scripts/services/platform/apiServices/pdsService.js"></script>
+<script src="scripts/services/platform/apiServices/lookupService.js"></script>
+<script src="scripts/services/platform/apiServices/module.js"></script>
+<script src="scripts/services/platform/logging/loggingEventService.js"></script>
+<script src="scripts/services/platform/data/lookupDataService.js"></script>
+<script src="scripts/services/platform/logging/module.js"></script>
+<script src="scripts/services/platform/navigation/navigationService.js"></script>
+<script src="scripts/services/platform/navigation/module.js"></script>
+
+<!-- Events -->
+<script src="scripts/services/platform/events/policyChangedEventService.js"></script>
+<script src="scripts/services/platform/events/dashboardChangedEventService.js"></script>
+<script src="scripts/services/platform/events/module.js"></script>
+
+<!-- QuickQuote services scripts -->
+<script src="scripts/services/QuickQuote/searchTransactionService.js"></script>
+<script src="scripts/services/QuickQuote/quickQuoteDataService.js"></script>
+<script src="scripts/services/QuickQuote/headerService.js"></script>
+<script src="scripts/services/QuickQuote/routeStateService.js"></script>
+<script src="scripts/services/QuickQuote/module.js"></script>
+
+<!-- Views -->
+<script src="views/platform/header/header.component.js"></script>
+<script src="views/platform/footer/footer.component.js"></script>
+
+<!-- Main -->
+<script src="scripts/main.js"></script>
+
+
+<!-- App Entry Points -->
+<script src="scripts/appEntryComponents/appSelection/appSelection.component.js"></script>
+<script src="scripts/appEntryComponents/app.js"></script>
+
+<!-- Field components -->
+<script src="scripts/quoteComponents/field-components/welcome/welcome.component.js"></script>
+<script src="scripts/quoteComponents/field-components/addForm/addForm.component.js"></script>
+<script src="scripts/quoteComponents/field-components/lobSelectionBar/lobSelectionBar.component.js"></script>
+<script src="scripts/quoteComponents/field-components/buttonBar/buttonBar.component.js"></script>
+<script src="scripts/quoteComponents/field-components/bindControl/bindControl.component.js"></script>
+<script src="scripts/quoteComponents/field-components/coveragePackaging/coveragePackaging.component.js"></script>
+<script src="scripts/quoteComponents/field-components/classGuideSearch/classGuideSearch.js"></script>
+<script src="scripts/quoteComponents/field-components/referralGrid/referralGrid.component.js"></script>
+<script src="scripts/quoteComponents/field-components/transactionGrid/transactionGrid.component.js"></script>
+<script src="scripts/quoteComponents/field-components/progressMenu/progressMenu.component.js"></script>
+<script src="scripts/quoteComponents/field-components/dashboardMenu/dashboardMenu.component.js"></script>
+<script src="scripts/quoteComponents/field-components/questions/questions.component.js"></script>
+<script src="scripts/quoteComponents/field-components/formsEndorsements/formsEndorsements.component.js"></script>
+<script src="scripts/quoteComponents/field-components/optionalCoverages/optionalCoverages.component.js"></script>
+<script src="scripts/quoteComponents/field-components/classSelection/classSelection.component.js"></script>
+<script src="scripts/quoteComponents/field-components/messages/displayMessages.component.js"></script>
+<script src="scripts/quoteComponents/field-components/messages/displayNotices.component.js"></script>
+<script src="scripts/quoteComponents/field-components/questions/documentQuestions.component.js"></script>
+<script src="scripts/quoteComponents/field-components/datePicker.js"></script>
+<script src="scripts/quoteComponents/field-components/errorCount/errorCount.component.js"></script>
+<script src="scripts/quoteComponents/field-components/module.js"></script>
+
+<!-- Quotes components -->
+<script src="scripts/quoteComponents/pages/classSearch/classSearch.component.js"></script>
+<script src="scripts/quoteComponents/pages/classGuide/classGuide.component.js"></script>
+<script src="scripts/quoteComponents/pages/accountInformation/accountInfo.component.js"></script>
+<script src="scripts/quoteComponents/pages/additionalInformation/additionalInfo.component.js"></script>
+<script src="scripts/quoteComponents/pages/dashboard/dashboard.component.js"></script>
+<script src="scripts/quoteComponents/pages/menuBar/menuBar.component.js"></script>
+
+<!-- Coverage selection -->
+<script src="scripts/quoteComponents/pages/coverageSelection/baseCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/generalLiability/glCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/excessLiability/xsCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/inlandMarine/imCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/liquorLiability/llCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/property/cfCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/ocp/ocpCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/specialEvent/specialeventCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/coverageSelection/contractorsPollutionLiability/cplCoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/templates/quickQuoteTemplate/quickQuoteTemplate.component.js"></script>
+
+<!-- Rate Premiums -->
+<script src="scripts/quoteComponents/pages/ratesPremiums/generalLiability/glRatesPremium.component.js"></script>
+<script src="scripts/quoteComponents/pages/ratesPremiums/commercialPollutionLiability/cplRatesPremium.component.js"></script>
+<script src="scripts/quoteComponents/pages/ratesPremiums/property/cfRatesPremium.component.js"></script>
+<script src="scripts/quoteComponents/pages/ratesPremiums/inlandMarine/imRatesPremium.component.js"></script>
+<script src="scripts/quoteComponents/pages/ratesPremiums/liquor/llRatesPremium.component.js"></script>
+
+<!-- CPL Pages -->
+<script src="scripts/quoteComponents/pages/cpl/classSearch/cpl_classSearch.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/classGuide/cpl_classGuide.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/accountInformation/cpl_accountInfo.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/coverageSelection/cpl_CoverageSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/ratesPremiums/cpl_RatesPremium.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/additionalInformation/cpl_additionalInfo.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/reviewQuote/cpl_reviewQuote.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/reviewBind/cpl_reviewBind.component.js"></script>
+<script src="scripts/quoteComponents/pages/cpl/reviewIssue/cpl_reviewIssue.component.js"></script>
+
+
+
+<script src="scripts/quoteComponents/pages/lineOfBusinessSelection/lineOfBusinessSelection.component.js"></script>
+<script src="scripts/quoteComponents/pages/ratesPremiums/generalLiability/glRatesPremium.component.js"></script>
+<script src="scripts/quoteComponents/pages/reviewBind/reviewBind.component.js"></script>
+<script src="scripts/quoteComponents/pages/reviewIssue/reviewIssue.component.js"></script>
+<script src="scripts/quoteComponents/pages/reviewQuote/reviewQuote.component.js"></script>
+<script src="scripts/quoteComponents/app.js"></script>
+
+
+<!-- endbuild -->
+</body>
+
+</html>

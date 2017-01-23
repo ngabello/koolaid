@@ -1,0 +1,12 @@
+<!-- button bar -->
+<div class="sub-section button-bar">
+  <div class="input-row">
+    <div ng-if="!$ctrl.disableBack" class="left-buttons">
+      <button id="btnNavigateBack" ng-click="$ctrl.navigateBack()">Back</button>
+    </div>
+    <div class="right-buttons">
+      <button id="btnSave" ng-click="$ctrl.savePolicy()">Save</button>
+      <button id="btnContinue" ng-click="$ctrl.continue()">Continue</button>
+    </div>
+  </div>
+</div>

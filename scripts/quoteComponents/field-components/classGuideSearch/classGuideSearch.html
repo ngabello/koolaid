@@ -1,0 +1,77 @@
+<div class="class-search-wrapper">
+  <form name="classSearchForm" novalidate>
+    <h1>Class Search<span id="cs-subline"></span></h1>
+    <div ng-if="$ctrl.allowedLobs.length == 1">
+      {{::$ctrl.allowedLobs[0].Desc}}
+    </div>
+    <div ng-if="$ctrl.allowedLobs.length > 1" class="slider-block">
+      <div class="slider-row">
+        <select class="slider" id="sublineType" name="sublineType"
+                ng-model="$ctrl.selectedLob"
+                ng-init="$ctrl.selectedLob = $ctrl.selectedLob || $ctrl.allowedLobs[0]"
+                ng-options="a as a.Desc for a in $ctrl.allowedLobs"
+                ng-change="$ctrl.lobTypeChanged($ctrl.selectedLob)" required>
+        </select>
+      </div>
+    </div>
+    <div class="search-row">
+      <div class="search-box-wrapper"
+           ng-class="{true: 'has-error'}[$ctrl.submitted && classSearchForm.classCodeSearch.$invalid]">
+        <label>Keyword or class code <span class="required">*</span></label>
+        <div ng-if="$ctrl.showClassDropDown">
+          <div ng-messages="classSearchForm.classCodeSearch.$error" ng-if="$ctrl.submitted">
+            <div ng-message="required">Please select a class code item.</div>
+          </div>
+          <select class="select-menu" id="classCodeSearch" name="classCodeSearch"
+                  ng-model="$ctrl.classCode"
+                  ng-options="a.HeaderId as a.Description for a in $ctrl.srchResults"
+                  ng-required="$ctrl.showClassDropDown"
+                  autocomplete="off">
+            <option value="">Select a Class</option>
+          </select>
+        </div>       
+        <div ng-if="!$ctrl.showClassDropDown" class="">
+          <div ng-messages="classSearchForm.classCodeSearch.$error" ng-if="$ctrl.submitted">
+            <div ng-message="invalid">Please select a valid class code item.</div>
+            <div ng-message="required">Please select a class code item.</div>
+          </div>
+          <input type="text" id="classCodeSearch" name="classCodeSearch"
+                 ng-model="$ctrl.uibClassCode"
+                 placeholder="Enter class code or keyword"
+                 uib-typeahead="srchItem as (srchItem.Code + ' - ' + srchItem.Description) for srchItem in $ctrl.getClassCodes($viewValue)"
+                 typeahead-loading="loadingLocations"
+                 typeahead-min-length="3"
+                 typeahead-no-results="noResults" class="form-control"
+                 ng-required="!$ctrl.showClassDropDown"
+                 autocomplete="off">
+          <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh">Well....... I'm waiting!</i>
+          <div ng-show="noResults">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
+          </div>
+        </div>
+      </div>
+    </div>
+     <label>Zipcode</label>
+    <div class="zip-box-wrapper"
+         ng-class="{true: 'has-error'}[$ctrl.submitted && classSearchForm.zipCode.$invalid]">
+      <div ng-messages="classSearchForm.zipCode.$error" ng-if="$ctrl.submitted">
+        <div ng-message="pattern">Please enter a valid postal code.</div>
+      </div>
+      <input type="tel" class="form-control text-center form-23" id="zipCode" maxlength="5" only-digits
+             ng-pattern="/\d{5}/"
+             tabindex="1" title="Zip code" type="tel" name="zipCode" ng-model="zipCode">
+    </div>
+    <div class="submit-wrapper">
+      <div class="btn btn-turq search-view">
+        <button id="classGuideSubmit"
+                ng-click="$ctrl.viewClassGuide(classSearchForm)">View
+        </button>
+      </div>
+      <div class="btn btn-turq search-quote">
+        <button id="quickQuoteSubmit"
+                ng-click="$ctrl.getQuickQuote(classSearchForm)">Quote
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

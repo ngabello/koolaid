@@ -1,0 +1,5 @@
+<div class="message-block" ng-if="$ctrl.eligibilityMessage">
+    <div ng-bind-html="$ctrl.eligibilityMessage.Text | trust" 
+        ng-class="$ctrl.getClass($ctrl.eligibilityMessage)">
+    </div>
+</div>

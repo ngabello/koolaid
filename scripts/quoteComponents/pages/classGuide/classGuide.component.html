@@ -1,0 +1,79 @@
+<div>
+  <class-guide-search update-search-results="classGuide.srchResultsChanged(sublineId)"></class-guide-search>
+</div>
+<div class="detail-section class-guide">
+  <div class="heading">
+    <div class="detail-title">
+      <h1>Class Detail</h1>
+      <div class="btn-container">
+        <div class="collapse-toggle">
+          <div id="expand-all" class="btn"><i class="glyphicon glyphicon-plus"></i><span
+            class="col-msg">Expand all</span>
+          </div>
+        </div>
+
+        <div class="btn-group" uib-dropdown auto-close="disabled" is-open="classGuide.locationChange.isopen">
+          <button id="button-template-url" type="button" class="btn btn-primary" ng-click="classGuide.locationSelected()" uib-dropdown-toggle ng-disabled="disabled">
+            Dropdown using template <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" uib-dropdown-menu template-url="../scripts/quoteComponents/pages/classGuide/views/locationDropdown.html" aria-labelledby="button-template-url">
+          </ul>
+        </div>
+
+        <!-- LocationChange dropdown -->
+        <!--<div class="btn-group" uib-dropdown auto-close="disabled" is-open="locationChange.isopen">-->
+          <!--<button id="changeLocationButton" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">-->
+            <!--Button dropdown <span class="caret"></span>-->
+          <!--</button>-->
+          <!--<div uib-dropdown-menu  role="menu" template-url="../scripts/quoteComponents/pages/classGuide/views/locationChangeDropdown.html" aria-labelledby="changeLocationButton"></div>-->
+        <!--</div>-->
+
+
+
+
+
+
+
+      </div>
+    </div>
+    <div class="detail-info">
+      <div class="class-code">
+        <h4 class="top-row"><span ng-bind="classGuide.srchResults.Description"></span></h4>
+      </div>
+      <div class="location">
+        <div class="location-icon">
+          <i class="glyphicon glyphicon-map-marker"></i>
+        </div>
+        <div class="location-info">State: <span ng-bind="classGuide.srchResults.StateCode"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Notes</h2>
+    <p>The following shall be separately classified and rated :</p>
+    <div ng-bind-html="classGuide.responseData.InternalNotes | trust"></div>
+  </div>
+  <div class="section">
+    <h2>Authority</h2>
+    <div class="authority-row">
+      <div class="authority-item allow">
+        <div class="icon-wrapper">
+          <i class="glyphicon glyphicon-ok"></i>
+        </div>
+        <div class="authority-details">
+          <h3 class="title">PremOps</h3>
+          <div class="sub-title">Agent Authority</div>
+        </div>
+      </div>
+      <div class="authority-item allow">
+        <div class="icon-wrapper">
+          <i class="glyphicon glyphicon-ok"></i>
+        </div>
+        <div class="authority-details">
+          <h3 class="title">ProdCOps</h3>
+          <div class="sub-title">Agent Authority</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

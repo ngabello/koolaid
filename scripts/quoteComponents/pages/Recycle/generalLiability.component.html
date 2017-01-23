@@ -1,0 +1,240 @@
+<div ng-controller="generalLiabilityComponent as glVM">
+  <uib-accordion close-others="oneAtATime">
+    <!-- General Liability Accordian -->
+    <div uib-accordion-group class="panel-default" is-open="glVM.glcAccordionState">
+      <uib-accordion-heading>
+        General Liability Classes <i class="pull-right glyphicon"
+                                     ng-class="{'glyphicon-chevron-down': glVM.glcAccordionState, 'glyphicon-chevron-right': !glVM.glcAccordionState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <uib-accordion close-others="oneAtATime">
+          <div uib-accordion-group class="panel-default" ng-repeat="(riskIndex, riskUnitItem) in glVM.riskUnits"
+               is-open="glVM.riskAcc.isOpen[riskIndex]">
+            <uib-accordion-heading>
+              <div uib-dropdown="dropdown" class="dropdown-holder" ng-click="glVM.preventGLCAccordionOpen($event)">
+                <button class="btn btn-icon" uib-dropdown-toggle><span class="glyphicon glyphicon-cog"
+                                                                       ng-class="{active: item.bookmark}"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a ng-click="glVM.viewNotes(riskIndex, $event)">View notes and guidelines</a></li>
+                  <li role="menuitem"><a ng-click="glVM.removeClass(riskIndex, $event)">Remove class</a></li>
+                </ul>
+              </div>
+              <div>
+                {{riskUnitItem.title}}<i class="glyphicon glyphicon-info-sign" tooltip-placement="right"
+                                         uib-tooltip="{{riskUnitItem.toolTipText}}"></i> <i class="pull-right glyphicon"
+                                                                                            ng-class="{'glyphicon-chevron-down': glVM.riskAcc.isOpen[riskIndex], 'glyphicon-chevron-right': !glVM.riskAcc.isOpen[riskIndex]}"></i>
+              </div>
+            </uib-accordion-heading>
+            <div ng-include="riskUnitItem.templateUrl" onload="riskUnit=riskUnitItem.riskUnit; index=riskIndex"></div>
+          </div>
+        </uib-accordion>
+      </div>
+      <!-- Add Class area -->
+      <div ng-form="classSearchForm">
+        <div>
+          <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" is-open="addClassState">
+              <uib-accordion-heading>
+                Add another class <i class="pull-right glyphicon"
+                                     ng-class="{'glyphicon-chevron-down': glVM.addClassState, 'glyphicon-chevron-right': !addClassState}"></i>
+              </uib-accordion-heading>
+              <div class="input-row search-wrapper">
+                <div ng-messages="classSearchForm.classCodeSearch.$error" style="color:maroon">
+                  <div ng-message="required">Please select a class code item.</div>
+                </div>
+                <input type="text" id="classCodeSearch" name="classCodeSearch"
+                       ng-model="glVM.classSrchResult"
+                       placeholder="Enter class code or keyword"
+                       uib-typeahead="srchItem as (srchItem.Code + ' - ' + srchItem.Description) for srchItem in glVM.getClassCodes($viewValue)"
+                       typeahead-loading="loadingLocations"
+                       typeahead-min-length="3"
+                       typeahead-no-results="noResults" class="form-control"
+                       autocomplete="off">
+                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh">Well....... I'm waiting!</i>
+                <div ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> No Results Found
+                </div>
+              </div>
+              <div class="submit-wrapper">
+                <button class="btn btn-turq queued-click"
+                        ng-click="glVM.addClass(glVM.classSrchResult, classSearchForm)">
+                  Add
+                </button>
+              </div>
+            </div>
+          </uib-accordion>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eligibility Accordian -->
+    <div uib-accordion-group class="panel-default" is-open="glVM.eligibilityAccordionState">
+      <uib-accordion-heading>
+        Eligibility <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': glVM.eligibilityAccordionState, 'glyphicon-chevron-right': !glVM.eligibilityAccordionState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <div class="question-row input-row " data-order="5">
+          <div class="input-column">
+            <label class="question-label">Does the applicant meet eligibility <a
+              class="line-guidelines">guidelines</a>, including loss and claim parameters?
+              <span class="required" aria-required="true">*</span>
+            </label>
+            <div class="check-row"><input class="auto-save"
+                                          id="QuestionsAndAnswers0_0__Code" name="QuestionsAndAnswers0[0].Code"
+                                          type="radio" value="Yes" aria-required="true"
+                                          style="position: absolute; visibility: hidden;">
+              <div class="ftWrapper ftDot off">
+                <div class="ftOption"></div>
+              </div>
+              <label>Yes</label></div>
+            <div class="check-row">
+              <input class="auto-save" id="QuestionsAndAnswers0_0__Code" name="QuestionsAndAnswers0[0].Code"
+                     type="radio" value="No" aria-required="true" style="position: absolute; visibility: hidden;">
+              <div class="ftWrapper ftDot off">
+                <div class="ftOption"></div>
+              </div>
+              <label>No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Forms & Endorsements -->
+    <add-form lob="glVM.lob" policy="glVM.policy" document-added="glVM.documentAdded(documentId)"></add-form>
+    <!-- Additional Coverages -->
+    <div uib-accordion-group class="panel-default" is-open="glVM.coveragesState">
+      <uib-accordion-heading>
+        Additional Coverages <i class="pull-right glyphicon"
+                                ng-class="{'glyphicon-chevron-down': glVM.coveragesState, 'glyphicon-chevron-right': !glVM.coveragesState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <uib-accordion close-others="oneAtATime">
+          <div uib-accordion-group class="panel-default"
+               ng-repeat="(covGroupIndex, coverageGroupItem) in glVM.coverageGroups"
+               is-open="glVM.covAcc.isOpen[covGroupIndex]">
+            <uib-accordion-heading>
+              <div>
+                {{::coverageGroupItem.Name}} <i class="pull-right glyphicon"
+                                                ng-class="{'glyphicon-chevron-down': glVM.covAcc.isOpen[covGroupIndex], 'glyphicon-chevron-right': !glVM.covAcc.isOpen[covGroupIndex]}"></i>
+              </div>
+            </uib-accordion-heading>
+            <div ng-repeat="(covIndex, coverage) in ::coverageGroupItem.Coverages">
+              <table class="plain">
+                <thead>
+                <tr class="label-row">
+                  <th class="add">Add</th>
+                  <th>Description</th>
+                  <th class="basis">Rating Basis</th>
+                  <th class="count">Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="optional-coverage-row" style="border-width: 1px 0 0 0;">
+                  <td class="add">
+                    <div ng-if="coverageGroupItem.Display == 'CheckBox'">
+                      <input type="checkbox" id="{{coverage.Name + '_chkBx_' + covIndex}}"
+                             ng-model="coverage.IsSelected"
+                             ng-change="glVM.coverageItemChanged(coverage)">
+                    </div>
+                    <div ng-if="coverageGroupItem.Display == 'RadioButton'">
+                      <input type="radio" name="{{coverageGroupItem.Code + '_rdoBtn_' + covGroupIndex}}"
+                             id="{{coverageGroupItem.Code + '_rdoBtn_' + covGroupIndex}}"
+                             ng-model="coverage.IsSelected"
+                             ng-value="true"
+                             ng-change="glVM.coverageItemChanged(coverage, coverageGroupItem.Id)">
+                    </div>
+                  <td>
+                    <p class="bold">
+                      {{::coverage.Name}}
+                    </p>
+                    <a href="/forms/download/CG 04 351207">{{::coverage.ShortName}}</a>
+                  </td>
+                  <td class="basis">
+                    <select class="auto-save">
+                      <option value="3a2f92d0-4296-47a4-9f74-39cdd1dbc473">$50,000/$50,000</option>
+                      <option value="4993c9fb-a67a-48fa-9236-39cdd1dbc464">$100,000/$100,000</option>
+                      </option>
+                    </select>
+                  </td>
+                  <td class="count">
+                    <input class="optionalCoverageQuantityRequired optional-coverage-quantity auto-save "
+                           id="Main_OptionalCoverages_12__Quantity" name="Main_OptionalCoverages[12].Quantity"
+                           type="text">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </uib-accordion>
+      </div>
+    </div>
+    <!-- Forms & Endorsements -->
+    <div uib-accordion-group class="panel-default" is-open="glVM.formsState">
+      <uib-accordion-heading>
+        Forms & Endorsements <i class="pull-right glyphicon"
+                                ng-class="{'glyphicon-chevron-down': glVM.formsState, 'glyphicon-chevron-right': !glVM.formsState}"></i>
+      </uib-accordion-heading>
+      <div>
+        <uib-accordion close-others="oneAtATime">
+          <div uib-accordion-group class="panel-default"
+               ng-repeat="(formGroupIndex, formGroupItem) in glVM.formGroups"
+               is-open="glVM.formAcc.isOpen[formGroupIndex]">
+            <uib-accordion-heading>
+              <div>
+                {{::formGroupItem.Name}} <i class="pull-right glyphicon"
+                                            ng-class="{'glyphicon-chevron-down': glVM.formAcc.isOpen[formGroupIndex], 'glyphicon-chevron-right': !glVM.formAcc.isOpen[formGroupIndex]}"></i>
+              </div>
+            </uib-accordion-heading>
+            <div ng-repeat="(formIndex, form) in ::formGroupItem.Forms">
+              <table class="plain document-list">
+                <thead>
+                <tr class="label-row">
+                  <th class="doc-icon-td">&nbsp;</th>
+                  <th class="add"></th>
+                  <th class="number">Number</th>
+                  <th>Description</th>
+                </tr>
+                </thead>
+                <tbody class="sub-panel collapsible">
+                <tr class="document-row-quick-quote document-row-selected">
+                  <td class="doc-icon-td">
+                  </td>
+                  <td class="add">
+                    <input type="checkbox" id="{{'chkBx_' + form.NormalizedNumber}}"
+                           ng-model="coverage.IsSelected"
+                           ng-change="glVM.coverageItemChanged(coverage)">
+
+                    <input checked="checked" class="auto-save" data-mode="error" data-placement="bottom"
+                           data-responsemethod="documentUpdated" data-saveparameters="" data-service="Documents"
+                           data-style="check" data-trigger="manual" id="Documents_0_" name="Documents[0]"
+                           type="checkbox" value="f2fc51c1-57e6-4032-b1db-39c5d1774097"
+                           style="position: absolute; visibility: hidden;">
+                    <div class="ftWrapper ftCheck on">
+                      <div class="ftOption"><i class="glyphicon glyphicon-ok" style="display: inline-block;"></i></div>
+                    </div>
+                  <td class="number">
+                    <a href="/forms/download/MAGL20140109 ">{{::form.DisplayNumber}}</a>
+                  </td>
+                  <td>
+                    {{::form.Title}}
+                  </td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr class="document-row-quick-quote">
+                  <td colspan="4" style="padding:0"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </uib-accordion>
+      </div>
+    </div>
+  </uib-accordion>
+</div>

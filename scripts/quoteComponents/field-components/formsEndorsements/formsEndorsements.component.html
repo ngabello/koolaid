@@ -1,0 +1,69 @@
+<div uib-accordion-group class="panel-default" is-open="$ctrl.formsState">
+  <uib-accordion-heading>
+    Forms & Endorsements <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.formsState, 'glyphicon-chevron-right': !$ctrl.formsState}"></i>
+  </uib-accordion-heading>
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <div uib-accordion-group class="panel-default" ng-repeat="(formGroupIndex, formGroupItem) in $ctrl.formGroups" is-open="formGroupItem.isOpen">
+        <uib-accordion-heading>
+          <div>
+            {{::formGroupItem.Name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': formGroupItem.isOpen, 'glyphicon-chevron-right': !formGroupItem.isOpen}"></i>
+          </div>
+        </uib-accordion-heading>
+        <div>
+          <table class="plain document-list">
+            <thead>
+              <tr class="label-row">
+                <th class="doc-icon-td">&nbsp;</th>
+                <th class="add"></th>
+                <th class="number">Number</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class="sub-panel collapsible" ng-repeat="(formIndex, form) in ::formGroupItem.Forms | orderBy : 'DisplayNumber'" ng-if="form.IsEditable || form.IsSelected">
+              <tr class="document-row-quick-quote document-row-selected" ng-class="{'document-row-selected': form.IsSelected, 'condition':form.IsConflicted && $ctrl.isInternalUser}">
+                <td class="doc-icon-td" ng-if="$ctrl.isInternalUser">
+                  <div ng-if="form.IsLocked">
+                    <input type="checkbox" id="{{'chkBx_DocumentsLock' + form.formIndex}}" ng-model="form.IsLocked" ng-change="$ctrl.valueChanged('UnLockDocuments',form.Id,null,form.IsLocked)">
+                  </div>
+                  <div ng-if="form.IsUnlocked" class="doc-unlocked">
+                    <input type="checkbox" id="{{'chkBx_DocumentsUnlock' + form.formIndex}}" ng-model="form.IsUnlocked" ng-change="$ctrl.valueChanged('LockDocuments',form.Id,null,form.IsUnlocked)">
+                  </div>
+                </td>
+                <td class="add">
+                  <input ng-if="form.IsEditable" type="checkbox" id="{{'chkBx_Documents' + form.formIndex}}" ng-model="form.IsSelected"
+                    ng-change="$ctrl.valueChanged('Documents',form.Id,{'DocumentQuantityOrder': form.QuantityOrder || 0, 'EditionDate':form.EditionDate},form.IsLocked)">
+
+                  <span ng-if="!form.IsEditable" class="glyphicon glyphicon-ok doc-check"></span>
+                </td>
+                <td class="number">
+                  <a href="/forms/download/MAGL20140109 ">{{::form.DisplayNumber}} {{::form.EditionDate|date:'MM yy'}}</a>
+                </td>
+                <td>
+                  {{::form.Title}} <i ng-if="form.IsDisplayFormChangeCue" class="glyphicon-plus-sign" tooltip-placement="right"
+                    uib-tooltip="New form or edition"></i>
+                  <!--<span ng-if="form.Questions">
+                    <a href="#" class="class-collapse float-right show-hide-detail">Hide detail</a>
+                    <a href="#" class="class-collapse float-right show-hide-detail">Show detail</a>
+                  </span>-->
+                </td>
+              </tr>
+              <tr ng-if="form.Questions != null && form.Questions.length > 0" class="document-questions table collapse-question-box">
+                <td colspan="{{self.isInternalUser ? 4 : 3}};">
+                  <div class="document-questions-section">
+                    <document-questions questions="form.Questions"></document-questions>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="document-row-quick-quote">
+                <td colspan="4" style="padding:0"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</uib-accordion>
+</div>
+</div>

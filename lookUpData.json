@@ -1,0 +1,242 @@
+{
+  "data": {
+    "attributes": [
+      {
+        "Name": "SearchType",
+        "Items": [
+          {
+            "Desc": "Agency Name",
+            "Value": "6",
+            "SortOrder": 10,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Status",
+            "Value": "1",
+            "SortOrder": 1,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Account Name",
+            "Value": "2",
+            "SortOrder": 2,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Account Name 2",
+            "Value": "9",
+            "SortOrder": 3,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Transaction Number",
+            "Value": "0",
+            "SortOrder": 4,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Policy Number",
+            "Value": "7",
+            "SortOrder": 5,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Producer",
+            "Value": "3",
+            "SortOrder": 6,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Created Date",
+            "Value": "4",
+            "SortOrder": 7,
+            "Meta": {
+              "Default": true
+            }
+          },
+          {
+            "Desc": "Effective Date",
+            "Value": "5",
+            "SortOrder": 8,
+            "Meta": {
+              "Default": false
+            }
+          },
+          {
+            "Desc": "Expiration Date",
+            "Value": "8",
+            "SortOrder": 9,
+            "Meta": {
+              "Default": false
+            }
+          }
+        ]
+      },
+      {
+        "Name": "SublineType",
+        "Items": [
+          {
+            "Value": "GeneralLiability",
+            "Desc": "General Liability",
+            "SortOrder": 1,
+            "Meta": {
+              "Display": "text"
+            }
+          },
+          {
+            "Value": "Property",
+            "Desc": "Property",
+            "SortOrder": 2,
+            "Meta": {
+              "Display": "text"
+            }
+          },
+          {
+            "Value": "ExcessLiability",
+            "Desc": "Excess Liability",
+            "SortOrder": 3,
+            "Meta": {
+              "Display": "select"
+            }
+          },
+          {
+            "Value": "InlandMarine",
+            "Desc": "Inland Marine",
+            "SortOrder": 4,
+            "Meta": {
+              "Display": "select"
+            }
+          },
+          {
+            "Value": "Liquor",
+            "Desc": "Liquor Liability",
+            "SortOrder": 5,
+            "Meta": {
+              "Display": "select"
+            }
+          },
+          {
+            "Value": "OwnersContractsProtective",
+            "Desc": "OCP",
+            "SortOrder": 6,
+            "Meta": {
+              "Display": "select"
+            }
+          },
+          {
+            "Value": "SpecialEvent",
+            "Desc": "Special Event",
+            "SortOrder": 7,
+            "Meta": {
+              "Display": "select"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "SearchStatus",
+        "Items": [
+          {
+            "Value": "InProgress",
+            "Desc": "In Progress",
+            "SortOrder": 1
+          },
+          {
+            "Value": "Referred",
+            "Desc": "Referred",
+            "SortOrder": 2
+          },
+          {
+            "Value": "Approved",
+            "Desc": "Approved",
+            "SortOrder": 3
+          },
+          {
+            "Value": "Declined",
+            "Desc": "Declined",
+            "SortOrder": 4
+          },
+          {
+            "Value": "Quote",
+            "Desc": "Quoted",
+            "SortOrder": 5
+          },
+          {
+            "Value": "Bind",
+            "Desc": "Bound",
+            "SortOrder": 6
+          },
+          {
+            "Value": "PreIssue",
+            "Desc": "Issue-In Progress",
+            "SortOrder": 7
+          },
+          {
+            "Value": "Issued",
+            "Desc": "Special Event",
+            "SortOrder": 8
+          }
+        ]
+      },
+      {
+        "Name": "TransactionType",
+        "Items": [
+          {
+            "Value": "MINE",
+            "Desc": "My transactions",
+            "SortOrder": 1
+          },
+          {
+            "Value": "AGENCY",
+            "Desc": "My agency",
+            "SortOrder": 2
+          }
+        ]
+      },
+      {
+        "Name": "LimitSearchFromType",
+        "Items": [
+          {
+            "Value": "30",
+            "Desc": "Last 30 days",
+            "SortOrder": 1
+          },
+          {
+            "Value": "90",
+            "Desc": "Last 90 days",
+            "SortOrder": 2
+          },
+          {
+            "Value": "180",
+            "Desc": "Last 180 days",
+            "SortOrder": 3
+          },
+          {
+            "Value": "366",
+            "Desc": "Last Year",
+            "SortOrder": 4
+          },
+          {
+            "Value": "12000",
+            "Desc": "All transactions",
+            "SortOrder": 5
+          }
+        ]
+      }
+    ]
+  }
+}

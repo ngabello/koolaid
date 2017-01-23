@@ -1,0 +1,5 @@
+<div ng-repeat="(questionIndex, question) in $ctrl.questions">
+  <div class="input-row question-row">
+    <label class='question-label'>{{question.Verbiage}}  <span class='required' ng-if="question.IsRequired">*</span></label>
+  </div>
+</div>

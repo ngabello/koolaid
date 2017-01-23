@@ -1,0 +1,407 @@
+<form name="accountInfoForm" novalidate>
+  <div class="sub-section button-bar">
+    <div class="right-buttons">
+      <button class="btn btn-turq queued-click " ng-click="accountInfoVM.saveQuote(accountInfoForm)">Save
+      </button>
+      <button class="btn btn-turq queued-click btn-refer hide">Refer
+      </button>
+      <button class="btn btn-turq queued-click btn-continue " ng-click="accountInfoVM.continue(accountInfoForm)">
+        Continue
+      </button>
+    </div>
+  </div>
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <div uib-accordion-group class="panel-default" is-open="accountInfoVM.policyAccordionStateOpen">
+        <uib-accordion-heading>
+          Policy Information <i class="pull-right glyphicon"
+                                ng-class="{'glyphicon-chevron-down': accountInfoVM.policyAccordionStateOpen, 'glyphicon-chevron-right': !accountInfoVM.policyAccordionStateOpen}"></i>
+        </uib-accordion-heading>
+        <div>
+          <div ng-if="accountInfoVM.CheckLineOfBusiness(EnumLineOfBusiness.OCP)" class="row notices-row span8">
+            <div class="notice"><i class="glyphicon glyphicon-info-sign"></i>For an OCP, the selected policy effective
+              and expiration dates should align with the project’s expected start and end dates.
+            </div>
+          </div>
+          <div ng-if="accountInfoVM.CheckLineOfBusiness(EnumLineOfBusiness.SpecialEvent)" class="row notices-row span8">
+            <div class="notice"><i class="glyphicon glyphicon-info-sign"></i>For a special event, the effective and
+              expiration dates should reflect the event dates plus one day, noting that per the Common Policy
+              Declarations, coverage expires at 12:01 a.m. Coverage for set up and take down can be added by endorsement
+              MEGL 1557. This optional endorsement provides BI or PD resulting directly from the set up and/or take-down
+              of a special event for the dates scheduled on the actual endorsement.
+            </div>
+          </div>
+          <div class="input-row"
+               ng-class="{true: has-error}[accountInfoForm.formSubmitted && accountInfoForm.effectiveDate.$invalid]">
+            <div class="row"
+                 ng-class="{true: has-error}[accountInfoForm.submitted && accountInfoForm.effectiveDate.$invalid]">
+              <label>Effective Date</label>
+              <div class="col-md-6">
+                <div ng-messages="accountInfoForm.effectiveDate.$error" ng-if="accountInfoVM.formSubmitted"
+                     style="color:maroon">
+                  <div ng-message="required">Please enter a valid effective date.</div>
+                  <div ng-message="invalidDate">Please enter a valid effective date.</div>
+                </div>
+                <input id="effectiveDate" name="effectiveDate" type="text" class="form-control" show-weeks="false"
+                       show-button-bar="false"
+                       uib-datepicker-popup="MM/dd/yyyy" ng-model="accountInfoVM.policyModel.EffectiveDate"
+                       is-open="accountInfoVM.dpEffectiveDate.opened"
+                       datepicker-options="accountInfoVM.effectiveDateOptions"
+                       required/>
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="accountInfoVM.openEffectiveDate()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+              </div>
+            </div>
+            <div class="row"
+                 ng-class="{true: has-error}[accountInfoForm.formSubmitted && accountInfoForm.expirationDate.$invalid]">
+              <label>Expiration Date</label>
+              <div class="col-md-6">
+                <div ng-messages="accountInfoForm.expirationDate.$error" ng-if="accountInfoVM.formSubmitted"
+                     style="color:maroon">
+                  <div ng-message="required">Please enter a valid expiration date.</div>
+                  <div ng-message="invalidDate">Please enter a valid effective date.</div>
+                </div>
+                <input id="expirationDate" name="expirationDate" type="text" class="form-control" show-weeks="false"
+                       show-button-bar="false"
+                       uib-datepicker-popup="MM/dd/yyyy" ng-model="accountInfoVM.policyModel.ExpirationDate"
+                       is-open="accountInfoVM.dpExpirationDate.opened"
+                       datepicker-options="accountInfoVM.expirationDateOptions"
+                       required/>
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="accountInfoVM.openExpirationDate()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+              </div>
+            </div>
+            <div ng-if="accountInfoVM.policyModel.CanBeRenewal" class="input-row">
+              <div class="span3 input-column">
+                <input id="renewal-checkbox" name="isRenewal" type="checkbox"
+                       ng-model="accountInfoVM.policyModel.IsRenewal">
+                <label>Markel Renewal</label>
+              </div>
+            </div>
+
+            <div ng-if="accountInfoVM.policyModel.IsRenewal">
+              <div id="renewal-policy-number">
+                <div class="span4 input-column"
+                     ng-class="{true: has-error}[accountInfoForm.formSubmitted && accountInfoForm.renewalOfPolicyNumber.$invalid]">
+                  <label>Markel Expiring Policy Number<span class="required">*</span></label>
+                  <div ng-messages="accountInfoForm.renewalOfPolicyNumber.$error" ng-if="accountInfoVM.formSubmitted"
+                       style="color:maroon">
+                    <div ng-message="required">Please choose your answer.</div>
+                  </div>
+                  <input id="renewalOfPolicyNumber" ng-model="accountInfoVM.policyModel.RenewalOfPolicyNumber"
+                         name="renewalOfPolicyNumber" type="text" ng-required="accountInfoVM.policyModel.IsRenewal">
+                </div>
+              </div>
+              <div ng-if="accountInfoVM.policyModel.HideHasMaterialChangesQuestion" id="material-change">
+                <div class="span6 input-column">
+                  <label>Are there any <a href="#" class="material-change-tooltip">material changes</a> to the renewal
+                    policy?<span
+                      class="required" aria-required="true">*</span></label>
+                  <div class="check-row"><input id="hasMaterialChanges"
+                                                ng-model="accountInfoVM.policyModel.HasMaterialChanges"
+                                                name="hasMaterialChanges" type="radio">
+                    <label>Yes</label>
+                  </div>
+                  <div class="check-row"><input id="hasMaterialChanges"
+                                                ng-model="accountInfoVM.policyModel.HasMaterialChanges"
+                                                name="hasMaterialChanges" type="radio">
+                    <label>No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Contact Accordian -->
+      <div uib-accordion-group class="panel-default" is-open="accountInfoVM.contactAccordionStateOpen">
+        <uib-accordion-heading>
+          Contact Information <i class="pull-right glyphicon"
+                                 ng-class="{'glyphicon-chevron-down': accountInfoVM.contactAccordionStateOpen, 'glyphicon-chevron-right': !accountInfoVM.contactAccordionStateOpen}"></i>
+        </uib-accordion-heading>
+
+        <div class="input-row"
+             ng-class="{true: 'has-error'}[accountInfoVM.formSubmitted && accountInfoForm.region.$invalid]">
+          <div class="span4 input-column">
+            <label for="region">Region</label>
+            <div ng-messages="accountInfoForm.region.$error" ng-if="accountInfoVM.formSubmitted" style="color:maroon">
+              <div ng-message="required">Please select a region.</div>
+            </div>
+            <select class="select-menu" id="region" name="region"
+                    ng-model="accountInfoVM.policyModel.Region"
+                    ng-init="accountInfoVM.policyModel.Region = accountInfoVM.policyModel.Region || accountInfoVM.regionList[0].value"
+                    ng-change="accountInfoVM.regionChanged(accountInfoVM.policyModel.Region)"
+                    ng-options="a.value as a.desc for a in accountInfoVM.regionList"
+                    autocomplete="off" required>
+            </select>
+          </div>
+        </div>
+        <div class="input-row search-wrapper">
+          <div ng-class="{true: 'has-error'}[accountInfoVM.formSubmitted && accountInfoForm.producerSearch.$invalid]">
+            <label>Search by agency name or code <span class="required" aria-required="true">*</span></label>
+            <div ng-messages="accountInfoForm.producerSearch.$error" ng-if="accountInfoVM.formSubmitted" style="color:maroon">
+              <div ng-message="required">Please select an agency.</div>
+            </div>
+            <input type="text" id="producerSearch" name="producerSearch"
+                   ng-model="accountInfoVM.agencySearchResult"
+                   placeholder="agency name or code"
+                   uib-typeahead="agency as (agency.Code + ' - ' + agency.Description + ' ' + agency.City + ' ' + agency.State) for agency in accountInfoVM.getAgencies($viewValue)"
+                   typeahead-loading="loadingAgencies"
+                   typeahead-no-results="noAgencyResults" class="form-control"
+                   typeahead-min-length="3"
+                   typeahead-on-select="accountInfoVM.agencySearchChanged($model)"
+                   autocomplete="off" required>
+            <i ng-show="loadingAgencies" class="glyphicon glyphicon-refresh">Loading..... be patient</i>
+            <div ng-show="noAgencyResults">
+              <i class="glyphicon glyphicon-remove"></i> No Results Found
+            </div>
+          </div>
+        </div>
+        <div ng-if="accountInfoVM.agencyList.length > 0" class="agency-details">
+          <div class="input-row">
+            <div class="span4 input-column">
+              <label>Agency</label>
+              <label><span ng-bind="accountInfoVM.agencyName"></span></label>
+            </div>
+            <div class="span input-column agency-location">
+              <label>Location</label>
+              <label><span ng-bind="accountInfoVM.agencyLocation"></span></label>
+            </div>
+            <div class="span input-column agency-code">
+              <label>Agency code</label>
+              <label><span ng-bind="accountInfoVM.agencyCode"></span></label>
+            </div>
+          </div>
+          <div ng-if="accountInfoVM.producerContactList.length > 0" class="input-row">
+            <div class="span4 input-column">
+              <div
+                ng-class="{true: 'has-error'}[accountInfoVM.formSubmitted && accountInfoForm.producerContact.$invalid]">
+                <label>Producer's name<span class="required" aria-required="true">*</span></label>
+                <div ng-messages="accountInfoForm.producerContact.$error" ng-if="accountInfoVM.formSubmitted"
+                     style="color:maroon">
+                  <div ng-message="required">Please select a contact.</div>
+                </div>
+                <select class="select-menu" id="producerContact" name="producerContact"
+                        ng-model="accountInfoVM.producerEmail"
+                        ng-options="a.Email as a.Name for a in accountInfoVM.producerContactList"
+                        autocomplete="off"
+                        required>
+                  <option value="">-- Select Value --</option>
+                </select>
+              </div>
+            </div>
+            <div class="span4 input-column">
+              <div class="input-column"><label>On behalf of another producer</label>
+                <select class="select-menu" id="onBehalfOfContact"
+                        name="onBehalfOfContact"
+                        ng-model="accountInfoVM.onBehalfOfContactEmail"
+                        ng-options="a.Email as a.Name for a in accountInfoVM.producerContactList"
+                        autocomplete="off">
+                  <option value="">-- Select Value --</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="input-row">
+            <div ng-class="{true: 'has-error'}[accountInfoVM.formSubmitted && accountInfoForm.producersEmail.$invalid]">
+              <label for="producersEmail">Producer's email<span class="required"
+                                                                aria-required="true">*</span></label>
+              <div ng-messages="accountInfoForm.producersEmail.$error" ng-if="accountInfoVM.formSubmitted"
+                   style="color:maroon">
+                <div ng-message="required">E-mail address is required</div>
+                <div ng-message="pattern">Please enter a valid e-mail address.</div>
+              </div>
+              <input class="span4" id="producersEmail" name="producersEmail" type="text"
+                     ng-pattern="/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i"
+                     ng-model="accountInfoVM.producerEmail" required
+                     aria-required="true">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="span4 input-column">
+              <div class="input-column"><label>Working underwriter<span class="required"
+                                                                        aria-required="true">*</span></label>
+                <select class="select-menu" id="underwriterEmail" name="underwriterEmail" aria-required="true"
+                        ng-model="accountInfoVM.underwriterEmail"
+                        ng-init="accountInfoVM.underwriterEmail = accountInfoVM.underwriterEmail || accountInfoVM.underwriters[0].value"
+                        ng-options="a.value as a.desc for a in accountInfoVM.underwriters"
+                        autocomplete="off">
+                </select>
+              </div>
+              <div class="span4 input-column">
+                <div class="input-column"><label>On behalf of another underwriter</label>
+                  <select class="select-menu" id="onBehalfOfUnderwriterEmail"
+                          name="onBehalfOfUnderwriterEmail"
+                          ng-model="accountInfoVM.onBehalfOfUnderwriterEmail"
+                          ng-options="a.value as a.desc for a in accountInfoVM.underwriters"
+                          autocomplete="off">
+                    <option value="">-- Select Value --</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- end underwriter view -->
+          </div>
+        </div>
+        <!-- Account Information Section -->
+        <div uib-accordion-group class="panel-default" is-open="accountInfoVM.accountAccordionStateOpen">
+          <uib-accordion-heading>
+            Account Information <i class="pull-right glyphicon"
+                                   ng-class="{'glyphicon-chevron-down': accountInfoVM.accountAccordionStateOpen, 'glyphicon-chevron-right': !accountInfoVM.accountAccordionStateOpen}"></i>
+          </uib-accordion-heading>
+          <div class="collapse-box in shown">
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label for="AccountName">Account name</label>
+                <input class="span4 update-target" id="accountName" name="accountName" type="text"
+                       ng-model="accountInfoVM.policyModel.AccountName">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label for="SecondaryAccountName">Account name 2</label>
+                <input class="span4 update-target" id="secondaryAccountName" name="secondaryAccountName" type="text"
+                       ng-model="accountInfoVM.policyModel.SecondaryAccountName">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label><strong>Primary Risk Location</strong></label>
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label for="AccountAddress1">Address 1</label>
+
+                <input class="span4" id="accountAddress1" name="accountAddress1" type="text"
+                       ng-model="accountInfoVM.policyModel.AccountAddress1">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label for="AccountAddress2">Address 2</label>
+                <input class="span4" id="accountAddress2" name="accountAddress2" type="text"
+                       ng-model="accountInfoVM.policyModel.AccountAddress2">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label for="AccountCity">City</label>
+                <input class="span4" id="accountCity" name="accountCity" type="text"
+                       ng-model="accountInfoVM.policyModel.AccountCity">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span2 input-column">
+                <label for="AccountStateCode">State</label>
+                <select class="select-menu" id="accountStateCode" name="accountStateCode"
+                        ng-model="accountInfoVM.policyModel.AccountState"
+                        ng-options="a.value as a.desc for a in accountInfoVM.stateList"
+                        autocomplete="off">
+                  <option value="">Select a State</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span2 input-column">
+                <label for="AccountZipCode">Zip Code</label>
+                <div ng-messages="accountInfoForm.AccountZipCode.$error" ng-if="accountInfoVM.formSubmitted">
+                  <div ng-message="pattern">Please enter a valid postal code.</div>
+                </div>
+                <input class="span2 validate-zip auto-save " id="accountZipCode" name="accountZipCode" type="text"
+                       only-digits
+                       maxlength="5"
+                       ng-pattern="/\d{5}/"
+                       ng-model="accountInfoVM.policyModel.AccountZipCode">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="span4 input-column">
+                <label><strong>Mailing address</strong></label>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="span3 input-column">
+                <input id="isSameAsPrimaryRiskLocation" name="isSameAsPrimaryRiskLocation"
+                       type="checkbox"
+                       ng-change="accountInfoVM.addressSameAs()"
+                       ng-model="accountInfoVM.policyModel.IsSameAsPrimaryRiskLocation"
+                       value="true" style="position: absolute;"/>
+                <label> Same as primary risk location</label>
+              </div>
+            </div>
+            <div ng-if="accountInfoVM.policyModel.IsSameAsPrimaryRiskLocation">
+              <div class="input-row">
+                <div class="span4 input-column">
+                  <label for="secondaryAccountAddress1">Address 1</label>
+
+                  <input class="span4" id="secondaryAccountAddress1" name="secondaryAccountAddress1" type="text"
+                         ng-model="accountInfoVM.policyModel.SecondaryAccountAddress1">
+                </div>
+              </div>
+              <div class="input-row">
+                <div class="span4 input-column">
+                  <label for="secondaryAccountAddress2">Address 2</label>
+                  <input class="span4" id="secondaryAccountAddress2" name="secondaryAccountAddress2" type="text"
+                         ng-model="accountInfoVM.policyModel.SecondaryAccountAddress2">
+                </div>
+              </div>
+              <div class="input-row">
+                <div class="span4 input-column">
+                  <label for="secondaryAccountCity">City</label>
+                  <input class="span4" id="secondaryAccountCity" name="secondaryAccountCity" type="text"
+                         ng-model="accountInfoVM.policyModel.SecondaryAccountCity">
+                </div>
+              </div>
+              <div class="input-row">
+                <div class="span2 input-column">
+                  <label for="secondaryAccountAddressStateCode">State</label>
+                  <div class="span2 input-column">
+                    <label for="AccountStateCode">State</label>
+                    <select class="select-menu" id="secondaryAccountAddressStateCode"
+                            name="secondaryAccountAddressStateCode"
+                            ng-model="accountInfoVM.policyModel.SecondaryAccountAddressStateCode"
+                            ng-options="a.value as a.desc for a in accountInfoVM.stateList"
+                            autocomplete="off">
+                      <option value="">Select a State</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="span2 input-column">
+                <label for="secondaryAccountAddressZipCode">Zip Code</label>
+                <div ng-messages="accountInfoForm.MailingAddressZipCode.$error" ng-if="accountInfoVM.formSubmitted">
+                  <div ng-message="pattern">Please enter a valid postal code.</div>
+                </div>
+                <input class="span2 validate-zip auto-save " id="secondaryAccountAddressZipCode"
+                       name="secondaryAccountAddressZipCode"
+                       type="text"
+                       only-digits
+                       maxlength="5"
+                       ng-pattern="/\d{5}/"
+                       ng-model="accountInfoVM.policyModel.SecondaryAccountAddressZipCode">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </uib-accordion>
+  <div class="sub-section button-bar">
+    <div class="right-buttons">
+      <button class="btn btn-turq queued-click " ng-click="accountInfoVM.saveQuote(accountInfoForm)">Save
+      </button>
+      <button class="btn btn-turq queued-click btn-refer hide">Refer
+      </button>
+      <button class="btn btn-turq queued-click btn-continue " ng-click="accountInfoVM.continue(accountInfoForm)">
+        Continue
+      </button>
+    </div>
+  </div>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+<div class="input-row">
+    <div class="input-column span2">
+        <label>Exposure<span class="required" aria-required="true">*</span></label>
+
+        <input class="span2 exposure-qty validate-fullNumber auto-save" ng-model="riskUnit.Exposure" id="RiskUnits[{{::index}}].Exposure" type="text" ng-disabled="riskUnit.IsIncluded || riskUnit.IsIfAny" ng-blur="coverageVM.valueChanged(riskUnit.Exposure,riskUnit.Order,'GeneralLiability/Exposure')">
+
+        <p class="sub-small">Premium base: <span class="bold premium-base">{{riskUnit.PremiumBaseUnitMeasure}}</span></p>
+        <br/>
+        <display-messages messages="riskUnit.Messages" field-name="'Exposure'"></display-messages>
+    </div>
+
+    <div class="input-column span4">
+        <label>&nbsp;</label>
+        <div ng-if="coverageVM.isInternalUser">
+            <input type="checkbox" id="RiskUnits[{{::index}}].IsIncluded" ng-model="riskUnit.IsIncluded" ng-disabled="riskUnit.IsIfAny" ng-change="coverageVM.valueChanged(riskUnit.IsIncluded,riskUnit.Order,'GeneralLiability/IsIncluded',riskUnit.IsIncluded)">
+            <label>Included</label>
+        </div>
+
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="checkbox" id="RiskUnits[{{::index}}].IsIfAny" ng-model="riskUnit.IsIfAny" ng-disabled="riskUnit.IsIncluded" ng-change="coverageVM.valueChanged(riskUnit.IsIfAny,riskUnit.Order,'GeneralLiability/IfAny',riskUnit.IsIfAny)">
+        <label>If any</label>
+    </div>
+</div>

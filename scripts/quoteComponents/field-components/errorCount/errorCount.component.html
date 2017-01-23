@@ -1,0 +1,7 @@
+<div ng-show="$ctrl.formSubmitted && $ctrl.parentForm.$invalid" class="row error-list-wrapper"
+     style="display: block; background-color: red">
+  <div class="span7 notice">
+    <i class="glyphicon glyphicon-info-sign"></i>
+    <span class="notice-message">Please fix the  {{ $ctrl.numberOfErrors()}} errors below to continue.</span>
+  </div>
+</div>

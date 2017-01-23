@@ -1,0 +1,26 @@
+<div ng-form="addForm">
+    <div uib-accordion-group class="panel-default" is-open="$ctrl.addFormState">
+        <uib-accordion-heading>
+            Add Forms & Endorsements <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.addFormState, 'glyphicon-chevron-right': !$ctrl.addFormState}"></i>
+        </uib-accordion-heading>
+        <div class="input-row search-wrapper">
+            <div ng-class="{true: 'has-error'}[addForm.formNameSearch.$invalid]">
+                <div ng-messages="addForm.formNameSearch.$error" style="color:maroon">
+                    <div ng-message="required">Please enter a form name or number.</div>
+                </div>
+                <label>Form name or number<span class="required">*</span></label>
+                <input type="text" id="formNameSearch" name="formNameSearch" ng-model="$ctrl.formItem" placeholder="Enter form name or keyword" uib-typeahead="srchItem as (srchItem.DisplayNumber + ' - ' + srchItem.Title) for srchItem in $ctrl.getDocuments($viewValue)"
+                    typeahead-loading="loadingDocuments" typeahead-min-length="3" typeahead-no-results="noResults" class="form-control" autocomplete="off">
+                <i ng-show="loadingDocuments" class="glyphicon glyphicon-refresh">Searching Documents</i>
+                <div ng-show="noResults">
+                    <i class="glyphicon glyphicon-remove"></i> No documents found matching your criteria
+                </div>
+            </div>
+        </div>
+        <div class="submit-wrapper">
+            <div class="btn btn-turq search-view">
+                <button id="btnAddForm" ng-click="$ctrl.addSelectedForm(addForm, $ctrl.formItem)">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

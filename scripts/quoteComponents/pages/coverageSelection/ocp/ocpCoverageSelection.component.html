@@ -1,0 +1,59 @@
+<form name="coverageVM.coverageSelectionForm" novalidate>
+  <button-bar next="coverageVM.continue(form)" save="coverageVM.savePolicy(form)" back="coverageVM.navigateBack(form)"></button-bar>
+  <lob-selection-bar selected-lob="coverageVM.lob" policy="coverageVM.policy"></lob-selection-bar>
+  <div>
+    <uib-accordion close-others="oneAtATime">
+      <!-- Liquor Liability Accordian -->
+      <div uib-accordion-group class="panel-default" is-open="coverageVM.classAccordionState">
+        <uib-accordion-heading>
+          {{::coverageVM.Lob.Desc}} Classes <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': coverageVM.classAccordionState, 'glyphicon-chevron-right': !coverageVM.classAccordionState}"></i>
+        </uib-accordion-heading>
+        <div>
+          <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" ng-repeat="(riskIndex, riskUnitItem) in coverageVM.riskUnits" is-open="coverageVM.riskAcc.isOpen[riskIndex]">
+              <uib-accordion-heading>
+                <div uib-dropdown="dropdown" class="dropdown-holder" ng-click="coverageVM.preventClassAccordionOpen($event)">
+                  <button class="btn btn-icon" uib-dropdown-toggle><span class="glyphicon glyphicon-cog"
+                                                                          ng-class="{active: item.bookmark}"></span>
+                    </button>
+                  <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem"><a ng-click="coverageVM.viewNotes(riskIndex, $event)">View notes and
+                        guidelines</a></li>
+                    <li role="menuitem"><a ng-click="coverageVM.removeClass(riskIndex, $event)">Remove class</a></li>
+                  </ul>
+                </div>
+                <div>
+                  {{riskUnitItem.title}}<i class="glyphicon glyphicon-info-sign" tooltip-placement="right" uib-tooltip="{{riskUnitItem.toolTipText}}"></i>                  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': coverageVM.riskAcc.isOpen[riskIndex], 'glyphicon-chevron-right': !coverageVM.riskAcc.isOpen[riskIndex]}"></i>
+                </div>
+              </uib-accordion-heading>
+              <div>
+                <div ng-include="'../scripts/quoteComponents/pages/coverageSelection/template/zipStateTerritory.component.html'" onload="riskUnit=riskUnitItem.riskUnit; index=riskIndex"></div>
+<div ng-include="'../scripts/quoteComponents/pages/coverageSelection/template/exposureInfo.component.html'" onload="riskUnit=riskUnitItem.riskUnit; index=riskIndex"></div>
+<questions list="riskUnitItem.riskUnit.Questions" class-order="riskUnitItem.riskUnit.Order" service="'RiskUnitQuestion'"
+  lob="coverageVM.lob" policy="coverageVM.policy"></questions>
+</div>
+</div>
+</uib-accordion>
+</div>
+</div>
+
+<!-- Line Questions -->
+<questions list="coverageVM.policy.GlLine.Questions" service="'LineQuestion'" lob="coverageVM.lob" policy="coverageVM.policy"></questions>
+
+<!-- Add Forms & Endorsements -->
+<add-form lob="coverageVM.lob" policy="coverageVM.policy" document-added="coverageVM.documentAdded(documentId)"></add-form>
+
+<!-- Additional Coverages -->
+<optional-coverages coverage-groups="coverageVM.coverageGroups" lob="coverageVM.lob" policy="coverageVM.policy"></optional-coverages>
+
+<!-- Forms & Endorsements -->
+<forms-endorsements form-groups="coverageVM.formGroups"></forms-endorsements>
+
+<!-- Add Forms & Endorsements -->
+<add-form lob="coverageVM.lob" policy="coverageVM.policy" document-added="coverageVM.documentAdded(documentId)"></add-form>
+
+<button-bar selected-lob="coverageVM.Lob" policy="coverageVM.policy"></button-bar>
+
+</uib-accordion>
+</div>
+</form>

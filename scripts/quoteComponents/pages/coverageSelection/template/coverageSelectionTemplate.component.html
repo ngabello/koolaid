@@ -1,0 +1,18 @@
+<form name="coverageSelectionVM.coverageSelectionForm" novalidate>
+  <!-- button bar -->
+  <div class="sub-section button-bar">
+    <div class="input-row">
+      <div class="left-buttons">
+        <button id="btnNavigateBack" ng-click="coverageSelectionVM.navigateBack(coverageSelectionVM.coverageSelectionForm)">Back</button>
+      </div>
+      <div class="right-buttons">
+        <button id="btnSave" ng-click="coverageSelectionVM.savePolicy(coverageSelectionVM.coverageSelectionForm)">Save</button>
+        <button id="btnContinue" ng-click="coverageSelectionVM.continue(coverageSelectionVM.coverageSelectionForm)">Continue</button>
+      </div>
+    </div>
+  </div>
+  <lob-selection-bar selected-lob="coverageSelectionVM.Lob"
+                     policy="coverageSelectionVM.policy"></lob-selection-bar>
+  <div ui-view></div>
+  <div ui-view name="dashboard"></div>
+</form>

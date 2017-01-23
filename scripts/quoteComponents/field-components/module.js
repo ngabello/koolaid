@@ -1,0 +1,25 @@
+/**
+ * Created by ngabelloa on 11/2/2016.
+ */
+angular.module('components.field', [])
+  .component('referralGrid', ReferralGrid())
+  .component('transactionGrid', TransactionGrid())
+  .component('datePicker', DatePicker())
+  .component('classGuideSearch', ClassGuideSearch())
+  .component('progressMenu', ProgressMenu())
+ // .component('dashboardMenu', DashboardMenu())
+  .component('addForm', AddFormComponent())
+  .component('lobSelectionBar', LineOfBusinessSelectionBarComponent())
+  .component('buttonBar', ButtonBarComponent())
+  .component('bindControl', BindComponent())
+  .component('coveragePackaging', CoveragePackagingComponent())
+  .component('questions', QuestionsComponent())
+  .component('optionalCoverages', OptionalCoveragesComponent())
+  .component('formsEndorsements', FormsEndorsementsComponent())
+  .component('classSelection', ClassSelectionComponent())
+  .component('displayMessages', DisplayMessagesComponent())
+  .component('documentQuestions', DocumentQuestionsComponent())
+  .component('displayNotices', DisplayNoticesComponent())
+  .component('welcome', WelcomeComponent())
+  .component('errorCount', ErrorCountComponent())
+;
